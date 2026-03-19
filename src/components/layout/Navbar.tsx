@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { clsx } from "clsx";
+import { Menu, X } from "lucide-react";
 
 const NAV_LINKS = [
   { label: "Sistemas", href: "/sistemas" },
@@ -15,9 +16,13 @@ const NAV_LINKS = [
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 24);
+      setMenuOpen(false);
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -26,7 +31,7 @@ export default function Navbar() {
     <header
       className={clsx(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrolled
+        scrolled || menuOpen
           ? "bg-dark-bg/90 backdrop-blur-md border-b border-dark-border shadow-[0_1px_24px_rgba(0,0,0,0.4)]"
           : "bg-transparent"
       )}
@@ -60,7 +65,45 @@ export default function Navbar() {
             </li>
           ))}
         </ul>
+
+        {/* Botão hamburger — mobile */}
+        <button
+          className="lg:hidden flex items-center justify-center w-10 h-10 text-text-muted hover:text-text-light transition-colors duration-200"
+          onClick={() => setMenuOpen((prev) => !prev)}
+          aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
+          aria-expanded={menuOpen}
+        >
+          {menuOpen ? <X size={22} /> : <Menu size={22} />}
+        </button>
       </nav>
+
+      {/* Drawer mobile */}
+      <div
+        className={clsx(
+          "lg:hidden overflow-hidden transition-all duration-300",
+          menuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        )}
+      >
+        <ul className="bg-dark-bg/95 backdrop-blur-md px-4 pb-4">
+          {NAV_LINKS.map((link, index) => (
+            <li
+              key={link.href}
+              className={clsx(
+                index !== 0 && "border-t border-dark-border/50"
+              )}
+            >
+              <Link
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center justify-between py-4 text-base text-text-muted hover:text-text-light transition-colors duration-200"
+              >
+                {link.label}
+                <span className="text-brand-cyan text-xs">→</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </header>
   );
 }
