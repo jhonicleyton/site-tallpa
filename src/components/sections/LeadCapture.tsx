@@ -88,17 +88,31 @@ export default function LeadCapture() {
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-1.5">
-                  <label htmlFor="company" className="text-text-muted text-xs font-medium uppercase tracking-wide">
-                    Empresa
-                  </label>
-                  <input
-                    id="company"
-                    name="company"
-                    type="text"
-                    placeholder="Nome da sua empresa"
-                    className="rounded-lg bg-dark-bg border border-dark-border px-4 py-2.5 text-sm text-text-light placeholder:text-text-muted/50 focus:outline-none focus:border-brand-cyan/60 transition-colors"
-                  />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="flex flex-col gap-1.5">
+                    <label htmlFor="phone" className="text-text-muted text-xs font-medium uppercase tracking-wide">
+                      Telefone / WhatsApp
+                    </label>
+                    <input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      placeholder="(11) 9 0000-0000"
+                      className="rounded-lg bg-dark-bg border border-dark-border px-4 py-2.5 text-sm text-text-light placeholder:text-text-muted/50 focus:outline-none focus:border-brand-cyan/60 transition-colors"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    <label htmlFor="company" className="text-text-muted text-xs font-medium uppercase tracking-wide">
+                      Empresa
+                    </label>
+                    <input
+                      id="company"
+                      name="company"
+                      type="text"
+                      placeholder="Nome da sua empresa"
+                      className="rounded-lg bg-dark-bg border border-dark-border px-4 py-2.5 text-sm text-text-light placeholder:text-text-muted/50 focus:outline-none focus:border-brand-cyan/60 transition-colors"
+                    />
+                  </div>
                 </div>
 
                 <div className="flex flex-col gap-1.5">

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import Button from "@/components/ui/Button";
 
 export default function Hero() {
@@ -45,8 +46,12 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-wrap gap-4 pt-2">
-            <Button variant="primary">Diagnóstico Gratuito</Button>
-            <Button variant="ghost">Nossos Casos</Button>
+            <Link href="/#contato">
+              <Button variant="primary">Diagnóstico Gratuito</Button>
+            </Link>
+            <Link href="/showcase">
+              <Button variant="ghost">Nossos Casos</Button>
+            </Link>
           </div>
         </div>
 

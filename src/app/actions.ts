@@ -13,6 +13,7 @@ export async function submitLead(
 ): Promise<LeadState> {
   const name = formData.get("name")?.toString().trim();
   const email = formData.get("email")?.toString().trim();
+  const phone = formData.get("phone")?.toString().trim() || null;
   const company = formData.get("company")?.toString().trim() || null;
   const message = formData.get("message")?.toString().trim() || null;
 
@@ -27,10 +28,11 @@ export async function submitLead(
 
   const { error } = await supabase
     .from("leads")
-    .insert([{ name, email, company, message }]);
+    .insert([{ name, email, phone, company, message }]);
 
   if (error) {
-    return { success: false, error: "Erro ao enviar. Tente novamente." };
+    console.error("[submitLead] Supabase error:", error);
+    return { success: false, error: `Erro: ${error.message} (código: ${error.code})` };
   }
 
   return { success: true };
