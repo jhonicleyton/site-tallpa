@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070B18"/>
+      <stop offset="100%" stop-color="#0B1020"/>
+    </linearGradient>
+    <radialGradient id="glowBg" cx="50%" cy="38%" r="58%">
+      <stop offset="0%" stop-color="#103A8C" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="gradTallpa" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4AF8FF"/>
+      <stop offset="45%" stop-color="#1BD8FF"/>
+      <stop offset="100%" stop-color="#1840FF"/>
+    </linearGradient>
+    <filter id="iconGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="20" result="coloredBlur"/>
+      <feColorMatrix in="coloredBlur" type="matrix"
+        values="0 0 0 0 0
+                0 0 0 0 0.78
+                0 0 0 0 1
+                0 0 0 0.72 0" result="blueGlow"/>
+      <feMerge>
+        <feMergeNode in="blueGlow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect x="96" y="96" width="832" height="832" rx="168" fill="url(#bgGrad)"/>
+  <rect x="96" y="96" width="832" height="832" rx="168" fill="url(#glowBg)"/>
+  <g filter="url(#iconGlow)" transform="translate(192 144) scale(1.75)">
+      <polygon fill="url(#gradTallpa)" points="110,188 172,156 172,344 110,312"/>
+      <polygon fill="url(#gradTallpa)" points="198,138 286,98 286,402 198,362"/>
+      <polygon fill="url(#gradTallpa)" points="312,188 374,156 374,344 312,312"/>
+  </g>
+</svg>

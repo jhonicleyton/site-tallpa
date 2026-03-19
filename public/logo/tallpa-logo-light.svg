@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="560" viewBox="0 0 1800 560">
+  <rect width="1800" height="560" fill="#FFFFFF"/>
+  
+    <defs>
+      
+        <linearGradient id="gradTallpa" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#4AF8FF"/>
+          <stop offset="45%" stop-color="#1BD8FF"/>
+          <stop offset="100%" stop-color="#1840FF"/>
+        </linearGradient>
+        
+    </defs>
+    <g>
+      <polygon fill="url(#gradTallpa)" points="110,188 172,156 172,344 110,312"/>
+      <polygon fill="url(#gradTallpa)" points="198,138 286,98 286,402 198,362"/>
+      <polygon fill="url(#gradTallpa)" points="312,188 374,156 374,344 312,312"/>
+    </g>
+    
+  <g>
+    <text x="430" y="258" font-family="Inter, Arial, sans-serif" font-size="158" font-weight="600" fill="#4B5563">Tallpa</text>
+    <text x="436" y="350" font-family="Inter, Arial, sans-serif" font-size="54" font-weight="500" fill="#2A6BFF" letter-spacing="22">SOLUTIONS</text>
+  </g>
+</svg>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="560" viewBox="0 0 1800 560">
+  <rect width="1800" height="560" fill="none"/>
+  
+    <defs>
+      
+    </defs>
+    <g>
+      <polygon fill="#1F2937" points="110,188 172,156 172,344 110,312"/>
+      <polygon fill="#1F2937" points="198,138 286,98 286,402 198,362"/>
+      <polygon fill="#1F2937" points="312,188 374,156 374,344 312,312"/>
+    </g>
+    
+  <g>
+    <text x="430" y="258" font-family="Inter, Arial, sans-serif" font-size="158" font-weight="600" fill="#1F2937">Tallpa</text>
+    <text x="436" y="350" font-family="Inter, Arial, sans-serif" font-size="54" font-weight="500" fill="#1F2937" letter-spacing="22">SOLUTIONS</text>
+  </g>
+</svg>
