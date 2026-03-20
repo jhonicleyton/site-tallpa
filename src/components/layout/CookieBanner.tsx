@@ -1,6 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
+import Link from "next/link";
 import Button from "@/components/ui/Button";
 
 const CONSENT_KEY = "tallpa-cookie-consent";
@@ -46,7 +47,9 @@ export default function CookieBanner() {
           <p className="text-text-light font-semibold mb-1">Controle sua Privacidade</p>
           <p className="text-text-muted text-sm leading-relaxed">
             Utilizamos cookies para otimizar sua experiência e analisar o tráfego conforme nossa{" "}
-            <span className="text-brand-cyan">Política de Privacidade</span>.
+            <Link href="/privacidade" className="text-brand-cyan hover:underline">
+              Política de Privacidade
+            </Link>.
           </p>
         </div>
         <div className="flex gap-3 shrink-0">
