@@ -1,11 +1,44 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { ArrowRight, Bot, TrendingUp, Zap, RefreshCw } from "lucide-react";
 import GlassCard from "@/components/ui/GlassCard";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "IA & Automação",
   description:
     "Agentes de IA e workflows que eliminam tarefas repetitivas e entregam ganho de escala operacional sem contratar mais pessoas.",
+  alternates: {
+    canonical: "/ia-automacao",
+  },
+  openGraph: {
+    images: [
+      {
+        url: "/images/tallpa-dashboard-mockup.svg",
+        width: 1200,
+        height: 630,
+        alt: "Tallpa Solutions — IA & Automação",
+      },
+    ],
+  },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://tallpa.com.br",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "IA & Automação",
+      item: "https://tallpa.com.br/ia-automacao",
+    },
+  ],
 };
 
 const benefits = [
@@ -44,6 +77,10 @@ const stats = [
 export default function IaAutomacaoPage() {
   return (
     <main className="bg-dark-bg min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* ─── Abertura §7.1 ─── */}
       <section className="relative min-h-screen flex items-start bg-dark-bg overflow-hidden">
         {/* Glow §7.3 */}

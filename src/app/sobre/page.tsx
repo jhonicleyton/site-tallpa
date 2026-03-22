@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import {
   ArrowRight,
   SearchCode,
@@ -10,10 +11,42 @@ import {
 } from "lucide-react";
 import GlassCard from "@/components/ui/GlassCard";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Sobre a Tallpa",
   description:
     "Conheça a metodologia IMPACT: 6 etapas de engenharia de software focadas em resultados reais de negócio, do diagnóstico ao deploy.",
+  alternates: {
+    canonical: "/sobre",
+  },
+  openGraph: {
+    images: [
+      {
+        url: "/images/tallpa-dashboard-mockup.svg",
+        width: 1200,
+        height: 630,
+        alt: "Tallpa Solutions — Sobre a Empresa",
+      },
+    ],
+  },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://tallpa.com.br",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Sobre a Tallpa",
+      item: "https://tallpa.com.br/sobre",
+    },
+  ],
 };
 
 const impact = [
@@ -64,6 +97,10 @@ const impact = [
 export default function SobrePage() {
   return (
     <main className="bg-dark-bg min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* ─── Abertura §7.1 ─── */}
       <section className="relative min-h-screen flex items-start bg-dark-bg overflow-hidden">
         {/* Glow §7.3 */}

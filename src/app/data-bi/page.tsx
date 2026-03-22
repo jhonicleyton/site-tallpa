@@ -1,11 +1,44 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { ArrowRight, Database, LineChart, Target, Eye } from "lucide-react";
 import GlassCard from "@/components/ui/GlassCard";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Data & BI",
   description:
     "Centralize seus dados e transforme números dispersos em clareza para tomar decisões com confiança. Dashboards e pipelines de dados sob medida.",
+  alternates: {
+    canonical: "/data-bi",
+  },
+  openGraph: {
+    images: [
+      {
+        url: "/images/tallpa-dashboard-mockup.svg",
+        width: 1200,
+        height: 630,
+        alt: "Tallpa Solutions — Data & Business Intelligence",
+      },
+    ],
+  },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://tallpa.com.br",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Data & BI",
+      item: "https://tallpa.com.br/data-bi",
+    },
+  ],
 };
 
 const benefits = [
@@ -44,6 +77,10 @@ const stats = [
 export default function DataBiPage() {
   return (
     <main className="bg-dark-bg min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* ─── Abertura §7.1 ─── */}
       <section className="relative min-h-screen flex items-start bg-dark-bg overflow-hidden">
         {/* Glow §7.3 */}

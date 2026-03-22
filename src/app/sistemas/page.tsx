@@ -1,11 +1,44 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { ArrowRight, CheckCircle2, Settings2, BarChart3, Users, Layers } from "lucide-react";
 import GlassCard from "@/components/ui/GlassCard";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Sistemas Sob Demanda",
   description:
     "Desenvolvemos ERPs, CRMs e portais exclusivos que se adaptam ao seu processo — não ao contrário. Software que escala com o seu negócio.",
+  alternates: {
+    canonical: "/sistemas",
+  },
+  openGraph: {
+    images: [
+      {
+        url: "/images/tallpa-dashboard-mockup.svg",
+        width: 1200,
+        height: 630,
+        alt: "Tallpa Solutions — Sistemas Sob Demanda",
+      },
+    ],
+  },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://tallpa.com.br",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Sistemas Sob Demanda",
+      item: "https://tallpa.com.br/sistemas",
+    },
+  ],
 };
 
 const benefits = [
@@ -38,6 +71,10 @@ const benefits = [
 export default function SistemasPage() {
   return (
     <main className="bg-dark-bg min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* ─── Abertura §7.1 ─── */}
       <section className="relative min-h-screen flex items-start bg-dark-bg overflow-hidden">
         {/* Glow §7.3 */}
