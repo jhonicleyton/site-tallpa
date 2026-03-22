@@ -31,12 +31,14 @@ export default function CookieBanner() {
     localStorage.setItem(PREFERENCES_KEY, JSON.stringify({ analytics: true, marketing: true }));
     localStorage.setItem(CONSENT_KEY, "accepted");
     window.dispatchEvent(new Event(CONSENT_EVENT));
+    window.dispatchEvent(new Event("cookieConsentUpdated"));
   };
 
   const handleSavePreferences = (preferences: { analytics: boolean; marketing: boolean }) => {
     localStorage.setItem(PREFERENCES_KEY, JSON.stringify(preferences));
     localStorage.setItem(CONSENT_KEY, "custom");
     window.dispatchEvent(new Event(CONSENT_EVENT));
+    window.dispatchEvent(new Event("cookieConsentUpdated"));
     setIsModalOpen(false);
   };
 

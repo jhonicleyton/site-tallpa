@@ -3,6 +3,7 @@ import { Inter, Manrope } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import CookieBanner from "@/components/layout/CookieBanner";
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import "./globals.css";
 
 const inter = Inter({
@@ -73,6 +74,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <CookieBanner />
+        <GoogleAnalytics />
       </body>
     </html>
   );
