@@ -76,7 +76,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://wa.me/5547997769646"
+                  href="https://wa.me/5547997769646?text=Olá,%20vi%20o%20site%20da%20Tallpa%20e%20gostaria%20de%20saber%20mais%20sobre"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-text-muted text-sm hover:text-text-light transition-colors"
