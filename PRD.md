@@ -1,5 +1,5 @@
 # PRD: Site Institucional - Tallpa Solutions
-**Versão:** 3.1 — Atualizado em 19/03/2026 (refinamento global de espaçamento e animações)
+**Versão:** 3.2 — Atualizado em 20/03/2026 (banner de consentimento de cookies LGPD)
 
 ---
 
@@ -17,6 +17,7 @@ Criar um site moderno, de alta performance e visualmente tecnológico para posic
 | **Ícones** | Lucide React |
 | **Gráficos** | Recharts (para o Showcase) |
 | **Utilitários CSS** | clsx + tailwind-merge |
+| **E-mail transacional** | Resend (`resend`) |
 | **Backend/BaaS** | Supabase (captação de leads) |
 | **Deploy** | Vercel — domínio `tallpa.com.br` |
 
@@ -168,6 +169,11 @@ Criar um site moderno, de alta performance e visualmente tecnológico para posic
 - RLS: apenas INSERT público habilitado.
 - Implementação: Server Action `submitLead()` em `src/app/actions.ts`.
 - Variáveis de ambiente: `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
+- **Notificação por e-mail:** após o insert no Supabase, `submitLead` envia e-mail para `contato@tallpa.com.br` via Resend.
+  - From: `Tallpa Site <site@tallpa.com.br>`
+  - Subject: `Novo Lead: [Nome]`
+  - Variável de ambiente: `RESEND_API_KEY` (apenas server-side, sem prefixo `NEXT_PUBLIC_`).
+  - Falha no envio do e-mail é logada mas não bloqueia o sucesso do formulário.
 
 ---
 
@@ -198,8 +204,10 @@ Criar um site moderno, de alta performance e visualmente tecnológico para posic
 - [x] LeadForm (`src/components/sections/LeadCapture.tsx`) — layout 2 colunas, `useActionState`, feedback de "Enviando..." e confirmação de sucesso
 - [x] Server Action `submitLead` (`src/app/actions.ts`) — validação de campos, insert Supabase, tratamento de erro
 - [x] Supabase client (`src/lib/supabase.ts`) — singleton via `NEXT_PUBLIC_SUPABASE_URL` + `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- [x] Notificação por e-mail via Resend (`resend`) — `submitLead` em `src/app/actions.ts` envia e-mail para `contato@tallpa.com.br` após cada lead salvo; requer `RESEND_API_KEY` no ambiente
 
 - [x] Footer (`src/components/layout/Footer.tsx`) — 3 colunas (logo + desc, links rápidos, contato), bottom bar com copyright centralizado. Inserido globalmente em `layout.tsx`.
+- [x] Cookie Banner LGPD (`src/components/layout/CookieBanner.tsx`) — Client Component com `useSyncExternalStore`; glassmorphism (`bg-dark-card/80 + backdrop-blur-md + border-dark-border`); persistência via `localStorage` (chave `tallpa-cookie-consent`); botões "Aceitar" (`primary`) e "Preferências" (`ghost`); fixo no rodapé (`fixed bottom-0 z-50`); SSR-safe. Inserido globalmente em `layout.tsx` após `<Footer />`.
 
 ### Home (`/`) — Concluída ✅
 Todas as seções da Home estão implementadas: Hero → Serviços → Prova Social → LeadForm → Footer.
