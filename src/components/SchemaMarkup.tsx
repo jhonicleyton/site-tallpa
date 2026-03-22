@@ -14,6 +14,13 @@ const schema = {
         width: 512,
         height: 512,
       },
+      image: {
+        "@type": "ImageObject",
+        url: `${BASE_URL}/images/tallpa-dashboard-mockup.svg`,
+        width: 1200,
+        height: 630,
+      },
+      telephone: "+5547997769646",
       foundingDate: "2024",
       description:
         "Software House especializada em sistemas sob demanda, automações com IA e soluções de Business Intelligence para empresas que precisam de tecnologia que realmente funciona.",

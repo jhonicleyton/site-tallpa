@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Linkedin, Mail } from "lucide-react";
+import { Instagram, Linkedin, Mail, Phone } from "lucide-react";
 
 const navLinks = [
   { label: "Sistemas", href: "/sistemas" },
@@ -72,6 +72,26 @@ export default function Footer() {
                 >
                   <Linkedin className="w-4 h-4 text-brand-cyan flex-shrink-0" strokeWidth={1.5} />
                   linkedin.com/company/tallpa
+                </a>
+              </li>
+              <li>
+                <a
+                  href="tel:+5547997769646"
+                  className="flex items-center gap-2 text-text-muted text-sm hover:text-text-light transition-colors"
+                >
+                  <Phone className="w-4 h-4 text-brand-cyan flex-shrink-0" strokeWidth={1.5} />
+                  +55 47 9 9776-9646
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/tallpasolutions"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-text-muted text-sm hover:text-text-light transition-colors"
+                >
+                  <Instagram className="w-4 h-4 text-brand-cyan flex-shrink-0" strokeWidth={1.5} />
+                  @tallpasolutions
                 </a>
               </li>
             </ul>
