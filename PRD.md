@@ -1,5 +1,5 @@
 # PRD: Site Institucional - Tallpa Solutions
-**Versão:** 3.2 — Atualizado em 20/03/2026 (banner de consentimento de cookies LGPD)
+**Versão:** 3.4 — Atualizado em 22/03/2026 (auditoria completa do projeto: todos os componentes e funcionalidades documentados)
 
 ---
 
@@ -11,7 +11,7 @@ Criar um site moderno, de alta performance e visualmente tecnológico para posic
 ## 2. Stack Tecnológico (Confirmado e Implementado)
 | Camada | Tecnologia |
 | :--- | :--- |
-| **Frontend** | Next.js 15 (App Router, TypeScript) |
+| **Frontend** | Next.js 16.2.0 (App Router, TypeScript) |
 | **Estilização** | Tailwind CSS v4 (configuração via `@theme` no CSS — sem `tailwind.config.ts`) |
 | **Animações** | Framer Motion (disponível, uso pontual e consciente) |
 | **Ícones** | Lucide React |
@@ -61,7 +61,7 @@ Criar um site moderno, de alta performance e visualmente tecnológico para posic
 | Logo light (completa) | `public/logo/tallpa-logo-light.svg` | Fundos claros |
 | Logo monocromática | `public/logo/tallpa-logo-monochrome.svg` | Uso editorial |
 | Ícone (sem texto) | `public/logo/tallpa-icon-transparent.svg` | Navbar, favicons, ícones inline |
-| Mockup dashboard | `public/images/tallpa-dashboard-mockup.svg` | Hero, Showcase |
+| Mockup dashboard | `public/images/tallpa-dashboard-mockup.svg` | Hero, Showcase, OG image |
 
 ### 4.2 Regra de uso de imagens
 - **NUNCA** criar SVGs inline para logos. Sempre usar `<Image />` do `next/image` ou `<img>` nativo apontando para os caminhos acima.
@@ -81,24 +81,48 @@ Criar um site moderno, de alta performance e visualmente tecnológico para posic
 ### 5.2 Layout — `src/components/layout/`
 | Componente | Descrição |
 | :--- | :--- |
-| `Navbar.tsx` | Fixa no topo (`fixed top-0 z-50`). Transparente no topo da página, aplica `backdrop-blur-md + bg-dark-bg/90 + border-b` ao rolar. Exibe ícone + "Tallpa Solutions" à esquerda e links de navegação à direita. |
+| `Navbar.tsx` | Fixa no topo (`fixed top-0 z-50`). Transparente no topo, aplica `backdrop-blur-md + bg-dark-bg/90 + border-b` ao rolar. Logo (ícone SVG + texto) à esquerda, links à direita. Menu hambúrguer em mobile com drawer animado. |
+| `Footer.tsx` | 3 colunas: logo + descrição \| links rápidos (Soluções) \| contato (Email `mailto:`, LinkedIn, WhatsApp `wa.me` com mensagem pré-preenchida, Instagram `@tallpasolutions`). Bottom bar centralizado com copyright. |
+| `CookieBanner.tsx` | Client Component com `useSyncExternalStore`. Glassmorphism, fixo no rodapé (`fixed bottom-0 z-50`). SSR-safe. Botões "Aceitar todos" e "Preferências" (abre `CookieModal`). Link para `/privacidade`. |
+| `CookieModal.tsx` | Modal de preferências granulares. Toggles para: Estritamente Necessários (sempre ativo), Analíticos (GA4), Marketing. Botão "Aceitar Todos" e "Salvar Preferências". Fecha ao clicar fora. |
+
+**Chaves localStorage do sistema de cookies:**
+- `tallpa-cookie-consent` — valor `accepted` ou `custom`
+- `tallpa-cookie-preferences` — JSON com `{ analytics: bool, marketing: bool }`
+- Evento customizado: `tallpa-consent-change` (sincroniza entre abas)
 
 ### 5.3 Seções — `src/components/sections/`
 | Componente | Descrição |
 | :--- | :--- |
-| `Hero.tsx` | Seção da Home. Ver especificação completa na Seção 7. |
+| `Hero.tsx` | Grid 2 colunas. Esquerda: badge "Software House Premium", H1 "Tecnologia que **transforma** operações em resultados", descrição, CTAs primário ("Diagnóstico Gratuito" → `/#contato`) e ghost ("Nossos Casos" → `/showcase`). Direita: mockup SVG com sombra. |
+| `Services.tsx` | 3 GlassCards de serviços com ícone Lucide + link para página de detalhe: Sistemas Sob Demanda (`/sistemas`), IA & Automação (`/ia-automacao`), Data & BI (`/data-bi`). |
+| `SocialProof.tsx` | 3 KPIs estáticos em gradiente elétrico: 37% (redução tempo análise), 3.2× (ROI médio 1º ano), +25k (horas manuais eliminadas/ano). Seção "Impacto Comprovado". |
+| `LeadCapture.tsx` | Layout 2 colunas. Esquerda: value props com CheckCircle icons. Direita: formulário (nome*, email*, telefone, empresa, mensagem). `useActionState` → `submitLead`. Estados: Enviando / Sucesso (checkmark verde) / Erro (texto vermelho). |
+| `ShowcaseDashboard.tsx` | Dashboard ERP Financeiro interativo com Recharts: toggles 7d/30d/12m, mini stats (Receita, ROI, Tasks), `ComposedChart` (barras + linha). Sidebar decorativa. Disclaimer "Dados fictícios". |
+| `ShowcaseWidgets.tsx` | 3 widgets Framer Motion (`whileHover`): Agentes IA (pulse), KPIs de Impacto (barras de progresso), Insights Estratégicos (alertas, sugestões, resultados). |
+
+### 5.4 Analytics — `src/components/analytics/`
+| Componente | Descrição |
+| :--- | :--- |
+| `GoogleAnalytics.tsx` | Client Component. Injeta GA4 (`strategy: "afterInteractive"`) **somente** se `tallpa-cookie-preferences.analytics === true` e `NEXT_PUBLIC_GA_ID` estiver definido. Escuta o evento `cookieConsentUpdated` para reativar sem reload. Retorna `null` sem consentimento (LGPD-compliant). |
+
+### 5.5 SEO — `src/components/`
+| Componente | Descrição |
+| :--- | :--- |
+| `SchemaMarkup.tsx` | Server Component. Renderiza `<script type="application/ld+json">` com schema `@graph`: Organization + LocalBusiness + ProfessionalService + WebSite. Inserido globalmente no `layout.tsx`. |
 
 ---
 
 ## 6. Arquitetura de Páginas (Sitemap)
 | Rota | Arquivo | Conteúdo Principal |
 | :--- | :--- | :--- |
-| `/` | `src/app/page.tsx` | Hero impactante, Proposta de Valor, Resumo dos 3 Serviços, Prova Social (KPIs), LeadForm. |
-| `/sistemas` | `src/app/sistemas/page.tsx` | Desenvolvimento sob demanda (ERPs, CRMs, Portais). |
-| `/ia-automacao` | `src/app/ia-automacao/page.tsx` | Agentes de IA e workflows que eliminam ineficiências. |
-| `/data-bi` | `src/app/data-bi/page.tsx` | Dados centralizados e insights acionáveis. |
-| `/showcase` | `src/app/showcase/page.tsx` | Galeria interativa de sistemas e dashboards (Recharts). |
-| `/sobre` | `src/app/sobre/page.tsx` | Metodologia IMPACT aplicada ao desenvolvimento tech. |
+| `/` | `src/app/page.tsx` | Hero, Serviços (3 cards), Prova Social (KPIs), LeadForm. |
+| `/sistemas` | `src/app/sistemas/page.tsx` | Sistemas sob demanda (ERPs, CRMs, Portais). |
+| `/ia-automacao` | `src/app/ia-automacao/page.tsx` | Agentes de IA e workflows. |
+| `/data-bi` | `src/app/data-bi/page.tsx` | Dados centralizados e dashboards. |
+| `/showcase` | `src/app/showcase/page.tsx` | Dashboard interativo + widgets Framer Motion. |
+| `/sobre` | `src/app/sobre/page.tsx` | Metodologia IMPACT (6 etapas). |
+| `/privacidade` | `src/app/privacidade/page.tsx` | Política de Privacidade LGPD (coleta, uso, direitos do titular, contato DPO). |
 
 ---
 
@@ -130,10 +154,6 @@ Criar um site moderno, de alta performance e visualmente tecnológico para posic
 </section>
 ```
 
-### 7.4 Padrão de gaps em grids
-- Todos os `grid-cols-X` devem usar `gap-6` como máximo.
-- Nunca usar `gap-8` ou superior em grids — mantém o layout compacto e consistente.
-
 ### 7.3 Glow radial de fundo (padrão Hero — pode ser reusado)
 ```tsx
 {/* Glow principal — topo */}
@@ -146,114 +166,120 @@ Criar um site moderno, de alta performance e visualmente tecnológico para posic
 }} />
 ```
 
+### 7.4 Padrão de gaps em grids
+- Todos os `grid-cols-X` devem usar `gap-6` como máximo.
+- Nunca usar `gap-8` ou superior em grids — mantém o layout compacto e consistente.
+
 ---
 
 ## 8. Navbar — Especificação Final
 - **Posição:** `fixed top-0 left-0 right-0 z-50`
 - **Estado inicial (topo):** `bg-transparent`
-- **Estado ao rolar:** `bg-dark-bg/90 backdrop-blur-md border-b border-dark-border shadow`
+- **Estado ao rolar** (Y > 24px): `bg-dark-bg/90 backdrop-blur-md border-b border-dark-border shadow`
 - **Conteúdo esquerdo:** `<Image src="/logo/tallpa-icon-transparent.svg" />` + `<span>Tallpa Solutions</span>`
-- **Conteúdo direito:** Links de navegação (Sistemas, IA & Automação, Data & BI, Showcase, Sobre)
+- **Conteúdo direito (desktop ≥ lg):** Links de navegação (Sistemas, IA & Automação, Data & BI, Showcase, Sobre)
+- **Mobile (< lg):** Ícone hambúrguer abre drawer com os mesmos links; backdrop-blur ativo ao abrir.
 - **Sem CTA na Navbar** — o CTA fica exclusivamente nas seções de conteúdo.
 
 ---
 
 ## 9. Funcionalidade Core: Showcase Interativo
-- **Dashboard Embed:** Frame interativo com Recharts (dados mock) respeitando a paleta da marca.
-- **System Preview:** Simulação de UI de sistema com microinterações via Framer Motion.
+- **Dashboard Embed (`ShowcaseDashboard`):** ERP Financeiro interativo com Recharts. Toggles de período (7d/30d/12m), mini-stats e `ComposedChart`. Dados fictícios com disclaimer.
+- **Widgets (`ShowcaseWidgets`):** 3 cards com Framer Motion (`whileHover`): Agentes IA (pulse animado), KPIs (barras de progresso), Insights Estratégicos.
 
 ---
 
-## 10. Captação de Leads — Supabase
-- Tabela `leads`: `id`, `name`, `email`, `phone?`, `company?`, `message?`, `created_at`
-- RLS: apenas INSERT público habilitado.
-- Implementação: Server Action `submitLead()` em `src/app/actions.ts`.
-- Variáveis de ambiente: `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
-- **Notificação por e-mail:** após o insert no Supabase, `submitLead` envia e-mail para `contato@tallpa.com.br` via Resend.
-  - From: `Tallpa Site <site@tallpa.com.br>`
-  - Subject: `Novo Lead: [Nome]`
-  - Variável de ambiente: `RESEND_API_KEY` (apenas server-side, sem prefixo `NEXT_PUBLIC_`).
-  - Falha no envio do e-mail é logada mas não bloqueia o sucesso do formulário.
+## 10. Captação de Leads — Supabase + Resend
+- **Tabela `leads`:** `id`, `name`, `email`, `phone?`, `company?`, `message?`, `created_at`
+- **RLS:** apenas INSERT público habilitado.
+- **Server Action `submitLead`** (`src/app/actions.ts`):
+  - Valida: name e email obrigatórios; email via regex `/^[^\s@]+@[^\s@]+\.[^\s@]+$/`
+  - Insert no Supabase; erro não bloqueia o fluxo
+  - Envia e-mail HTML formatado via Resend para `contato@tallpa.com.br`
+    - From: `Tallpa Site <site@tallpa.com.br>`
+    - Subject: `Novo Lead: [Nome]`
+  - Retorna `LeadState { success: bool, error?: string }`
+- **Variáveis de ambiente:** `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `RESEND_API_KEY`
 
 ---
 
-## 11. Copys e Gatilhos Mentais
+## 11. Conformidade LGPD
+
+### 11.1 Cookie Banner + Modal
+- `CookieBanner.tsx` — exibe apenas se consentimento ainda não dado; persiste decisão em localStorage.
+- `CookieModal.tsx` — toggles granulares para Analíticos e Marketing.
+- Chaves: `tallpa-cookie-consent`, `tallpa-cookie-preferences`.
+
+### 11.2 Google Analytics 4
+- Injetado **condicionalmente** por `GoogleAnalytics.tsx` somente com `analytics: true` em `tallpa-cookie-preferences`.
+- Variável de ambiente: `NEXT_PUBLIC_GA_ID`.
+- Ativação dinâmica via evento `cookieConsentUpdated` sem reload.
+
+### 11.3 Política de Privacidade (`/privacidade`)
+- Cobre: dados coletados (nome, email, telefone, empresa, mensagem, cookies), finalidade, compartilhamento (apenas Vercel/Supabase), gestão de cookies, direitos do titular (LGPD art. 18), contato DPO (`contato@tallpa.com.br`).
+- Atualizada em março de 2026.
+
+---
+
+## 12. Copys e Gatilhos Mentais
 - **Autoridade:** Enfatizar trajetória sólida no mercado.
-- **Eficiência:** Redução de 36% no tempo de análise e ROI de 3.2× no primeiro ano.
-- **CTA Principal:** "Solicitar Diagnóstico Gratuito" (análise de 60 min).
-- **Copy Hero atual:** "Escale sua operação com tecnologia sob medida. Desenvolvemos sistemas, automações com IA e painéis de dados que eliminam gargalos, cortam custos invisíveis e preparam sua empresa para o próximo nível."
+- **Eficiência:** Redução de 37% no tempo de análise e ROI de 3.2× no primeiro ano.
+- **CTA Principal:** "Diagnóstico Gratuito" (análise de 60 min).
+- **Copy Hero atual:** "Tecnologia que **transforma** operações em resultados. Desenvolvemos sistemas, automações com IA e painéis de dados que eliminam gargalos, cortam custos invisíveis e preparam sua empresa para o próximo nível."
 
 ---
 
-## 12. Deploy
-- Repositório GitHub → Vercel (deploy automático no push).
+## 13. Deploy
+- Repositório GitHub (`jhonicleyton/site-tallpa`) → Vercel (deploy automático no push para `main`).
 - Variáveis de ambiente configuradas no dashboard da Vercel.
 - Domínio `tallpa.com.br` apontado via DNS para a Vercel — SSL automático.
 
 ---
 
-## 13. Status de Implementação
+## 14. SEO & Visibilidade para IAs
 
-### Concluído ✅
-
-- [x] Configuração Base (Next.js 15, Tailwind CSS v4, Fontes Inter + Manrope, paleta de cores via `@theme`)
-- [x] Navbar (`src/components/layout/Navbar.tsx`) — fixa, scroll-aware, ícone + nome
-- [x] Hero (`src/components/sections/Hero.tsx`) — seção de abertura da Home
-- [x] Seção de Serviços (`src/components/sections/Services.tsx`) — 3 cards glassmorphism (Sistemas, IA & Automação, Data & BI)
-- [x] Prova Social / KPIs (`src/components/sections/SocialProof.tsx`) — cabeçalho "Impacto Comprovado" + 3 blocos com gradiente elétrico (37%, 3.2×, +25k)
-- [x] LeadForm (`src/components/sections/LeadCapture.tsx`) — layout 2 colunas, `useActionState`, feedback de "Enviando..." e confirmação de sucesso
-- [x] Server Action `submitLead` (`src/app/actions.ts`) — validação de campos, insert Supabase, tratamento de erro
-- [x] Supabase client (`src/lib/supabase.ts`) — singleton via `NEXT_PUBLIC_SUPABASE_URL` + `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-- [x] Notificação por e-mail via Resend (`resend`) — `submitLead` em `src/app/actions.ts` envia e-mail para `contato@tallpa.com.br` após cada lead salvo; requer `RESEND_API_KEY` no ambiente
-
-- [x] Footer (`src/components/layout/Footer.tsx`) — 3 colunas (logo + desc, links rápidos, contato), bottom bar com copyright centralizado. Inserido globalmente em `layout.tsx`.
-- [x] Cookie Banner LGPD (`src/components/layout/CookieBanner.tsx`) — Client Component com `useSyncExternalStore`; glassmorphism (`bg-dark-card/80 + backdrop-blur-md + border-dark-border`); persistência via `localStorage` (chave `tallpa-cookie-consent`); botões "Aceitar" (`primary`) e "Preferências" (`ghost`); fixo no rodapé (`fixed bottom-0 z-50`); SSR-safe. Inserido globalmente em `layout.tsx` após `<Footer />`.
-
-### Home (`/`) — Concluída ✅
-Todas as seções da Home estão implementadas: Hero → Serviços → Prova Social → LeadForm → Footer.
-
-### Showcase (`/showcase`) — Concluída ✅
-
-- [x] `src/app/showcase/page.tsx` — Server Component; abertura §7.1 com glow §7.3, título "Tecnologia em Movimento", CTA final com âncora `/#contato`
-- [x] `src/components/sections/ShowcaseDashboard.tsx` — ERP Financeiro interativo: toggles 7d/30d/12m, mini stats (Receita, ROI, Tasks), `ComposedChart` (barras receita/custo + linha economia IA), tooltip dark mode, sidebar decorativa, aviso "Dados fictícios"
-- [x] `src/components/sections/ShowcaseWidgets.tsx` — 3 widgets com Framer Motion (`whileHover`): Agentes de IA (pulse), KPIs de Impacto (barras de progresso), Insights Estratégicos (alertas, sugestões, resultados)
-
-### Páginas de Serviço — Concluídas ✅
-
-- [x] `src/app/sistemas/page.tsx` — H1: "O software que a sua empresa merecia desde o início." · 4 GlassCards de benefícios (processo exclusivo, ERPs/CRMs, visibilidade, arquitetura escalável) · diferenciais rápidos (sem mensalidade, código é seu, integrações sem limite) · 2 CTAs → `/#contato`
-- [x] `src/app/ia-automacao/page.tsx` — H1: "IA & Automação Inteligente." · Subtítulo: "Elimine os gargalos manuais que travam o seu crescimento. Substitua processos repetitivos por fluxos inteligentes que escalam com a sua empresa." · 4 GlassCards (tarefas eliminadas, escala sem headcount, agentes contextuais, workflows integrados) · stats rápidos (80%, 24/7, 3.2×) · 2 CTAs → `/#contato`
-- [x] `src/app/data-bi/page.tsx` — H1: "Seus dados existem. Falta clareza para usá-los." · 4 GlassCards (fonte única de verdade, clareza para quem decide, métricas de causa, análise histórica + previsão) · stats rápidos (37%, 1 fonte, +25k) · 2 CTAs → `/#contato`
-
-**Padrão aplicado em todas:** abertura §7.1 (`min-h-screen`, `items-start`, `pt-20`), glow radial §7.3 (topo + canto inferior direito), eyebrow `text-brand-cyan`, headline `font-display` com `text-gradient-electric`, `metadata` com title e description para SEO.
-
-### Sobre (`/sobre`) — Concluída ✅
-
-- [x] `src/app/sobre/page.tsx` — H1: "Engenharia de Software focada em Resultados Reais." · Subtítulo: "Não somos apenas codificadores. Somos parceiros estratégicos que usam tecnologia para resolver problemas complexos de negócios." · Grid 3 colunas com 6 GlassCards da Metodologia IMPACT (Imersão, Mapeamento, Prototipagem, Arquitetura, Código, Tração) · cada card exibe letra IMPACT em gradiente elétrico + ícone Lucide `text-brand-cyan` + label + descrição · CTA final: "Fale com um Engenheiro" → `/#contato`
-
-### SEO — Concluído ✅
-
-#### Metadata Global (`src/app/layout.tsx`)
-- `metadataBase: new URL("https://tallpa.com.br")` — resolve todos os caminhos relativos de imagens OG
-- `title.template: "%s | Tallpa Solutions"` — sufixo aplicado automaticamente a todas as páginas filhas
-- `title.default: "Tallpa Solutions | Software House Premium"` — fallback para a Home
-- `openGraph` completo: type `website`, locale `pt_BR`, url, siteName, imagem `/images/tallpa-dashboard-mockup.svg` (1200×630)
-- `twitter.card: "summary_large_image"` com mesma imagem
+### Metadata Global (`src/app/layout.tsx`)
+- `metadataBase: new URL("https://tallpa.com.br")`
+- `title.template: "%s | Tallpa Solutions"` — sufixo automático
+- `title.default: "Tallpa Solutions | Software House Premium"` — fallback
+- `openGraph`: type `website`, locale `pt_BR`, siteName, imagem OG `/images/tallpa-dashboard-mockup.svg` (1200×630)
+- `twitter.card: "summary_large_image"`
 - `robots: { index: true, follow: true }`
 
-#### Títulos por página (sem sufixo — template do layout adiciona `| Tallpa Solutions`)
-| Rota | `title` no código | Resultado renderizado |
-| :--- | :--- | :--- |
-| `/` | *(default)* | `Tallpa Solutions \| Software House Premium` |
-| `/sistemas` | `"Sistemas Sob Demanda"` | `Sistemas Sob Demanda \| Tallpa Solutions` |
-| `/ia-automacao` | `"IA & Automação"` | `IA & Automação \| Tallpa Solutions` |
-| `/data-bi` | `"Data & BI"` | `Data & BI \| Tallpa Solutions` |
-| `/showcase` | `"Showcase"` | `Showcase \| Tallpa Solutions` |
-| `/sobre` | `"Sobre a Tallpa"` | `Sobre a Tallpa \| Tallpa Solutions` |
+### Metadata por Página
+| Rota | Title | Canonical | OG Image | BreadcrumbList |
+| :--- | :--- | :---: | :---: | :---: |
+| `/` | `Tallpa Solutions \| Software House, IA e BI em Santa Catarina` + keywords | ✅ | via layout | — |
+| `/sistemas` | `Sistemas Sob Demanda` | ✅ | ✅ | ✅ |
+| `/ia-automacao` | `IA & Automação` | ✅ | ✅ | ✅ |
+| `/data-bi` | `Data & BI` | ✅ | ✅ | ✅ |
+| `/showcase` | `Showcase` | — | via layout | — |
+| `/sobre` | `Sobre a Tallpa` | ✅ | ✅ | ✅ |
+| `/privacidade` | `Política de Privacidade` | — | via layout | — |
 
-#### Indexação
-- [x] `src/app/sitemap.ts` — 6 rotas com `changeFrequency` e `priority` calibrados. Gerado em `/sitemap.xml`.
-  - Home: `priority: 1`, `changeFrequency: "monthly"`
-  - Serviços (/sistemas, /ia-automacao, /data-bi): `priority: 0.9`
-  - Showcase: `priority: 0.7`
-  - Sobre: `priority: 0.6`, `changeFrequency: "yearly"`
-- [x] `src/app/robots.ts` — `Allow: /` para todos os crawlers, aponta para `https://tallpa.com.br/sitemap.xml`. Gerado em `/robots.txt`.
+**Keywords da Home:** `software house`, `sistemas sob demanda`, `IA`, `inteligência artificial`, `automação`, `Business Intelligence`, `BI`, `ERP`, `CRM`, `Santa Catarina`, `Tallpa`, `Tallpa Solutions`, `desenvolvimento de software`, `dashboards`
+
+### JSON-LD Schema Markup (`src/components/SchemaMarkup.tsx`)
+Server Component inserido globalmente no `layout.tsx`. Renderiza `@graph` com:
+- **Organization + LocalBusiness + ProfessionalService:**
+  - `name`, `url`, `logo` (icon.svg 512×512), `image` (OG mockup 1200×630)
+  - `telephone: "+5547997769646"`, `foundingDate: "2024"`
+  - `description`, `address` (SC, BR), `areaServed` (Brasil)
+  - `hasOfferCatalog` com 3 serviços (URLs incluídas)
+  - `sameAs`: Instagram, LinkedIn, GitHub
+  - `priceRange: "$$"`, `knowsLanguage: "pt-BR"`
+- **WebSite:** url, name, description, publisher
+- **Validado** pelo Google Rich Results Test como **"Organização"** ✅
+
+### Indexação
+- **`src/app/sitemap.ts`** — 7 rotas com datas fixas reais:
+  | Rota | Priority | Change Frequency |
+  | :--- | :---: | :--- |
+  | `/` | 1.0 | monthly |
+  | `/sistemas` | 0.9 | monthly |
+  | `/ia-automacao` | 0.9 | monthly |
+  | `/data-bi` | 0.9 | monthly |
+  | `/showcase` | 0.7 | monthly |
+  | `/sobre` | 0.6 | yearly |
+  | `/privacidade` | 0.3 | yearly |
+- **`src/app/robots.ts`** — `Allow: /` para todos os crawlers + link para `/sitemap.xml`

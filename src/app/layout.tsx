@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Inter, Manrope } from "next/font/google";
+import { Inter, Poppins, JetBrains_Mono } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import CookieBanner from "@/components/layout/CookieBanner";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import SchemaMarkup from "@/components/SchemaMarkup";
+import { site } from "@/content/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -13,45 +14,41 @@ const inter = Inter({
   display: "swap",
 });
 
-const manrope = Manrope({
-  variable: "--font-manrope",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
+  weight: ["500", "600", "700", "800"],
   display: "swap",
 });
 
-const BASE_URL = "https://tallpa.com.br";
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains",
+  subsets: ["latin"],
+  weight: ["500", "700"],
+  display: "swap",
+});
+
+const BASE_URL = site.url;
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
     template: "%s | Tallpa Solutions",
-    default: "Tallpa Solutions | Software House Premium",
+    default: "Tallpa Solutions | Sistemas, indicadores e automação para operações",
   },
-  description:
-    "Desenvolvimento de sistemas sob demanda, automações com IA e soluções de BI para empresas que precisam de tecnologia que realmente funciona.",
+  description: site.description,
   openGraph: {
     type: "website",
     locale: "pt_BR",
     url: BASE_URL,
-    siteName: "Tallpa Solutions",
-    title: "Tallpa Solutions | Software House Premium",
-    description:
-      "Desenvolvimento de sistemas sob demanda, automações com IA e soluções de BI para empresas que precisam de tecnologia que realmente funciona.",
-    images: [
-      {
-        url: "/images/tallpa-dashboard-mockup.svg",
-        width: 1200,
-        height: 630,
-        alt: "Tallpa Solutions — Dashboard Preview",
-      },
-    ],
+    siteName: site.name,
+    title: "Tallpa Solutions | Sistemas, indicadores e automação para operações",
+    description: site.description,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tallpa Solutions | Software House Premium",
-    description:
-      "Desenvolvimento de sistemas sob demanda, automações com IA e soluções de BI.",
-    images: ["/images/tallpa-dashboard-mockup.svg"],
+    title: "Tallpa Solutions | Sistemas, indicadores e automação",
+    description: site.description,
   },
   robots: {
     index: true,
@@ -67,10 +64,13 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${inter.variable} ${manrope.variable} dark h-full antialiased`}
+      className={`${inter.variable} ${poppins.variable} ${jetbrainsMono.variable} h-full antialiased`}
       data-scroll-behavior="smooth"
     >
-      <body className="min-h-full flex flex-col bg-dark-bg text-text-light">
+      <body className="min-h-full flex flex-col bg-bg text-white">
+        <a href="#conteudo" className="skip-link">
+          Pular para o conteúdo
+        </a>
         <SchemaMarkup />
         <Navbar />
         {children}
