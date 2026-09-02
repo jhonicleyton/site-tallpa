@@ -289,3 +289,52 @@ body > * {
 .scroll-slim::-webkit-scrollbar-track {
   background: transparent;
 }
+
+/* ============================================================
+   Hero — campo de partículas e varredura de luz
+   Todas as animações abaixo são canceladas pelo bloco
+   prefers-reduced-motion definido acima.
+   ============================================================ */
+@keyframes tallpa-drift {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateY(-14px) scale(1.25);
+    opacity: 0.9;
+  }
+}
+
+@keyframes tallpa-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes tallpa-sweep {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(220%);
+  }
+}
+
+.animate-drift {
+  animation: tallpa-drift 6s ease-in-out infinite;
+}
+
+.animate-rise {
+  animation: tallpa-rise 700ms var(--ease-out-brand) both;
+}
+
+.animate-sweep {
+  animation: tallpa-sweep 5.5s ease-in-out infinite;
+}
