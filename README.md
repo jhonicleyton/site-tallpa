@@ -116,15 +116,20 @@ A estrutura da galeria não muda.
 
 ## Pendências
 
-### 1. Coluna `interest` na tabela `leads`
+### 1. Migration no Supabase (fazer antes de publicar)
 
-O formulário passou a qualificar o lead pelo assunto. Rode no SQL Editor do Supabase:
+Rode [`supabase/migrations/0001_site_v2_leads.sql`](supabase/migrations/0001_site_v2_leads.sql) no SQL Editor. São dois comandos:
 
 ```sql
 alter table public.leads add column if not exists interest text;
+alter table public.leads alter column email drop not null;
 ```
 
-Enquanto a coluna não existir, nada quebra: o código detecta a ausência, regrava sem o campo e o interesse continua chegando no e-mail.
+**O primeiro** cria a coluna do assunto que o visitante escolhe no formulário. Enquanto não existir, nada quebra: o código detecta a ausência, regrava sem o campo e o interesse continua chegando no e-mail. Só não fica registrado no banco.
+
+**O segundo é o crítico.** O formulário antigo exigia e-mail; o novo aceita e-mail **ou** WhatsApp. Se a coluna `email` for `NOT NULL`, todo lead que vier só com telefone falha no insert e passa a existir apenas no e-mail de notificação. Rodar o comando é seguro mesmo que a coluna já aceite nulo.
+
+Nenhuma política de RLS muda: a tabela continua com INSERT público e nada mais.
 
 ### 2. Verificar o LinkedIn
 
