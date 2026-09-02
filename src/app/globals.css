@@ -63,9 +63,10 @@
   --color-line-strong: rgba(74, 248, 255, 0.3);
 
   /* ---------- Largura do site ----------
-     Gera a utilitária `max-w-site`. Único lugar a mudar se a largura
-     do conteúdo precisar de ajuste. 90rem = 1440px.                  */
-  --container-site: 90rem;
+     Gera a utilitária `max-w-site`, usada nas seções de conteúdo.
+     Navbar, rodapé e Hero são de largura total e não usam este valor.
+     Único lugar a mudar se o conteúdo precisar de ajuste. 100rem = 1600px. */
+  --container-site: 100rem;
 
   /* ---------- Raios ---------- */
   --radius-sm: 6px;
