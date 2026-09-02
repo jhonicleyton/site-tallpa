@@ -117,10 +117,6 @@ export const faq: { q: string; a: string }[] = [
     a: "Trabalhamos em ciclos curtos, e cada ciclo termina com algo utilizável de ponta a ponta. Isso significa que você vê o sistema funcionando bem antes de ele estar completo. O prazo total depende do escopo, e ele é fechado no diagnóstico, não estimado por telefone.",
   },
   {
-    q: "Quem fica com o código e os dados?",
-    a: "Você. O código do que construímos e a base de dados são do cliente. Entregamos com a documentação de arquitetura e das decisões técnicas, para que outra equipe consiga assumir se for o caso.",
-  },
-  {
     q: "Vocês dão suporte depois de entregar?",
     a: "Sim. Sistema em produção precisa de acompanhamento, porque o uso real sempre revela coisas que o planejamento não previu. O formato do acompanhamento é combinado caso a caso.",
   },
