@@ -52,7 +52,7 @@ export default function ScreenGallery({ keys }: { keys: readonly ScreenKey[] }) 
 
       <p className="text-sm leading-relaxed text-gray-400">{spec.caption}</p>
 
-      <p className="flex items-start gap-2 rounded-lg border border-line bg-bg-1/50 p-3 text-xs leading-relaxed text-gray-500">
+      <p className="flex items-start gap-2 rounded-lg border border-line bg-bg-1/50 p-3 text-xs leading-relaxed text-gray-400">
         <Info className="mt-px h-3.5 w-3.5 shrink-0" strokeWidth={1.5} aria-hidden="true" />
         <span>
           Recriação da interface, construída com os tokens visuais do projeto. Os números exibidos

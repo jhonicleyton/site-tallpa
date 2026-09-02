@@ -47,7 +47,7 @@ export default function DeviceFrame({
           <i className="block h-2.5 w-2.5 rounded-full bg-gray-700" />
         </span>
         {label && (
-          <span className="ml-2 truncate font-mono text-[10px] text-gray-500">{label}</span>
+          <span className="ml-2 truncate font-mono text-[10px] text-gray-400">{label}</span>
         )}
       </div>
       <div className="bg-bg">{children}</div>

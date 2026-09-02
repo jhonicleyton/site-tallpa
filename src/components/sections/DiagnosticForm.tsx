@@ -191,7 +191,7 @@ export default function DiagnosticForm() {
             {isPending ? "Enviando…" : "Solicitar diagnóstico gratuito"}
             {!isPending && <ArrowRight className="h-4 w-4" aria-hidden="true" />}
           </Button>
-          <p className="text-center text-xs leading-relaxed text-gray-500">
+          <p className="text-center text-xs leading-relaxed text-gray-400">
             Retorno em até 24h úteis. Sem proposta e sem compromisso.
             <br />
             Prefere falar agora?{" "}

@@ -61,10 +61,9 @@ export default function TallpaMark({
             <feColorMatrix
               in="blur"
               type="matrix"
-              values="0 0 0 0 0
-                      0 0 0 0 0.78
-                      0 0 0 0 1
-                      0 0 0 0.6 0"
+              // Uma linha só: quebras de linha aqui viram divergência de
+              // hidratação (o servidor serializa literal, o cliente normaliza).
+              values="0 0 0 0 0 0 0 0 0 0.78 0 0 0 0 1 0 0 0 0.6 0"
               result="cyanGlow"
             />
             <feMerge>

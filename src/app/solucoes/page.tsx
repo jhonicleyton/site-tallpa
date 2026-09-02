@@ -83,7 +83,7 @@ export default function SolucoesPage() {
                 </div>
 
                 <div className="rounded-xl border border-line bg-bg/40 p-5">
-                  <h3 className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-gray-500">
+                  <h3 className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-gray-400">
                     O que você recebe
                   </h3>
                   <ul className="mt-3.5 flex flex-col gap-2.5">

@@ -5,31 +5,31 @@ export default function MobileTechApp() {
   return (
     <div className="flex h-[520px] flex-col">
       <div className="border-b border-line px-4 pb-3 pt-8">
-        <div className="text-[10px] text-gray-500">Olá,</div>
+        <div className="text-[10px] text-gray-400">Olá,</div>
         <div className="font-display text-base font-semibold text-white">Técnico</div>
         <div className="mt-0.5 font-mono text-[9px] text-cyan-500">PERÍODO CORRENTE</div>
       </div>
 
       <div className="flex-1 space-y-3 overflow-hidden px-4 py-3.5">
         <div className="surface-topline rounded-[14px] border border-line bg-gradient-to-b from-bg-1 to-bg-2/60 p-3.5">
-          <div className="text-[9px] font-semibold uppercase tracking-[0.12em] text-gray-500">
+          <div className="text-[9px] font-semibold uppercase tracking-[0.12em] text-gray-400">
             Produção do período
           </div>
           <div className="text-gradient mt-1.5 font-display text-[26px] font-bold leading-none">
             1.842 <span className="font-sans text-xs font-medium text-gray-400">pts</span>
           </div>
-          <div className="mt-2 font-mono text-[9px] text-gray-500">138 ordens com sucesso</div>
+          <div className="mt-2 font-mono text-[9px] text-gray-400">138 ordens com sucesso</div>
         </div>
 
         <div className="grid grid-cols-2 gap-2.5">
           <div className="rounded-xl border border-line bg-bg-1/60 p-3">
-            <div className="text-[9px] uppercase tracking-[0.1em] text-gray-500">Sucesso</div>
+            <div className="text-[9px] uppercase tracking-[0.1em] text-gray-400">Sucesso</div>
             <div className="mt-1 font-display text-lg font-bold text-success">72,6%</div>
           </div>
           <div className="rounded-xl border border-line bg-bg-1/60 p-3">
-            <div className="text-[9px] uppercase tracking-[0.1em] text-gray-500">Posição</div>
+            <div className="text-[9px] uppercase tracking-[0.1em] text-gray-400">Posição</div>
             <div className="mt-1 font-display text-lg font-bold text-white">
-              1º<span className="text-xs font-medium text-gray-500"> de 8</span>
+              1º<span className="text-xs font-medium text-gray-400"> de 8</span>
             </div>
           </div>
         </div>
@@ -47,7 +47,7 @@ export default function MobileTechApp() {
         </div>
 
         <div className="rounded-xl border border-line bg-bg-1/60 p-3">
-          <div className="mb-2 text-[9px] font-semibold uppercase tracking-[0.12em] text-gray-500">
+          <div className="mb-2 text-[9px] font-semibold uppercase tracking-[0.12em] text-gray-400">
             Maiores fontes
           </div>
           {[
@@ -76,10 +76,10 @@ export default function MobileTechApp() {
         ].map(({ Icon, label, active }) => (
           <div key={label} className="flex flex-1 flex-col items-center gap-1">
             <Icon
-              className={`h-4 w-4 ${active ? "text-cyan-300" : "text-gray-600"}`}
+              className={`h-4 w-4 ${active ? "text-cyan-300" : "text-gray-400"}`}
               strokeWidth={1.5}
             />
-            <span className={`text-[8px] ${active ? "text-cyan-300" : "text-gray-600"}`}>
+            <span className={`text-[8px] ${active ? "text-cyan-300" : "text-gray-400"}`}>
               {label}
             </span>
           </div>

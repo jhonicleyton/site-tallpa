@@ -43,7 +43,7 @@ export default function KanbanDispatch() {
       <div className="mb-4 flex items-center justify-between gap-3">
         <div>
           <div className="font-display text-sm font-semibold text-white">Agenda de despacho</div>
-          <div className="font-mono text-[10px] text-gray-500">Arraste uma ordem para atribuir</div>
+          <div className="font-mono text-[10px] text-gray-400">Arraste uma ordem para atribuir</div>
         </div>
         <span className="rounded-full border border-line px-2.5 py-1 font-mono text-[9px] text-gray-400">
           HOJE
@@ -68,7 +68,7 @@ export default function KanbanDispatch() {
                 >
                   <div className="flex items-center justify-between gap-2">
                     <span className="font-mono text-[10px] font-bold text-gray-200">{c.os}</span>
-                    <span className="font-mono text-[9px] text-gray-500">{c.hora}</span>
+                    <span className="font-mono text-[9px] text-gray-400">{c.hora}</span>
                   </div>
                   <span
                     className={`mt-1.5 inline-block rounded px-1.5 py-0.5 font-mono text-[9px] font-bold ${tagTone[c.tag]}`}

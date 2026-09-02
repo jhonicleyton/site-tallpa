@@ -26,7 +26,7 @@ const series = [
 export default function ProductionChart() {
   return (
     <ResponsiveContainer width="100%" height="100%">
-      <ComposedChart data={series} margin={{ top: 4, right: 4, bottom: 0, left: -22 }}>
+      <ComposedChart data={series} margin={{ top: 4, right: 4, bottom: 4, left: -8 }}>
         <defs>
           <linearGradient id="barGrad" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#4AF8FF" stopOpacity={0.85} />
@@ -35,7 +35,16 @@ export default function ProductionChart() {
         </defs>
         <CartesianGrid stroke="rgba(255,255,255,0.04)" vertical={false} />
         <XAxis dataKey="dia" tick={{ fill: "#585D78", fontSize: 10 }} axisLine={false} tickLine={false} />
-        <YAxis tick={{ fill: "#585D78", fontSize: 10 }} axisLine={false} tickLine={false} />
+        {/* Dois eixos: ordens (dezenas) e valor (milhares) não cabem na
+            mesma escala — num eixo só, as barras somem sob a linha. */}
+        <YAxis
+          yAxisId="os"
+          tick={{ fill: "#585D78", fontSize: 10 }}
+          axisLine={false}
+          tickLine={false}
+          width={28}
+        />
+        <YAxis yAxisId="valor" orientation="right" hide />
         <Tooltip
           cursor={{ fill: "rgba(74,248,255,0.04)" }}
           contentStyle={{
@@ -46,8 +55,16 @@ export default function ProductionChart() {
           }}
           labelStyle={{ color: "#9A9FB4" }}
         />
-        <Bar dataKey="os" name="Ordens" fill="url(#barGrad)" radius={[3, 3, 0, 0]} />
-        <Line type="monotone" dataKey="valor" name="Valor (R$)" stroke="#4AF8FF" strokeWidth={2} dot={false} />
+        <Bar yAxisId="os" dataKey="os" name="Ordens" fill="url(#barGrad)" radius={[3, 3, 0, 0]} />
+        <Line
+          yAxisId="valor"
+          type="monotone"
+          dataKey="valor"
+          name="Valor (R$)"
+          stroke="#4AF8FF"
+          strokeWidth={2}
+          dot={false}
+        />
       </ComposedChart>
     </ResponsiveContainer>
   );

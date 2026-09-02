@@ -53,14 +53,14 @@ export default function Hero() {
           </ButtonLink>
         </div>
 
-        <p className="animate-rise mt-5 text-xs text-gray-500 [animation-delay:820ms]">
+        <p className="animate-rise mt-5 text-xs text-gray-400 [animation-delay:820ms]">
           {cta.promise}
         </p>
 
         {/* Prova: os sistemas em produção, direto abaixo da dobra */}
         <div className="animate-rise mt-16 w-full [animation-delay:900ms]">
           <div className="rule-gradient mx-auto mb-8 max-w-md" />
-          <p className="mb-6 font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-500">
+          <p className="mb-6 font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-400">
             Sistemas em produção hoje
           </p>
           <ul className="grid grid-cols-1 gap-3 sm:grid-cols-3">

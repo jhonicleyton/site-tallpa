@@ -154,7 +154,7 @@ export default function SobrePage() {
                 <Check className="mt-1 h-4 w-4 shrink-0 text-cyan-400" strokeWidth={2} aria-hidden="true" />
                 <div>
                   <span className="block text-sm font-semibold text-white">{p.name}</span>
-                  <span className="mt-0.5 block text-xs text-gray-500">{p.segment}</span>
+                  <span className="mt-0.5 block text-xs text-gray-400">{p.segment}</span>
                 </div>
               </div>
               <span className="shrink-0 font-mono text-[10px] uppercase tracking-wider text-cyan-500 sm:text-right">

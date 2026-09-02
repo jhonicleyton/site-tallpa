@@ -92,15 +92,15 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-            <p className="mt-1 text-xs leading-relaxed text-gray-500">{cta.promise}</p>
+            <p className="mt-1 text-xs leading-relaxed text-gray-400">{cta.promise}</p>
           </div>
         </div>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-line pt-6 sm:flex-row">
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-gray-400">
             © {new Date().getFullYear()} {site.name}. Todos os direitos reservados.
           </p>
-          <p className="font-mono text-[11px] text-gray-600">Santa Catarina · Brasil</p>
+          <p className="font-mono text-[11px] text-gray-400">Santa Catarina · Brasil</p>
         </div>
       </Container>
     </footer>

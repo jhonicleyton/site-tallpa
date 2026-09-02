@@ -112,7 +112,7 @@ export default async function ProjetoPage({ params }: { params: Promise<{ slug: 
         <dl className="mt-10 grid grid-cols-2 gap-3 lg:grid-cols-4">
           {project.facts.map((f) => (
             <div key={f.label} className="rounded-xl border border-line bg-bg-1/50 p-4">
-              <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-gray-500">
+              <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-gray-400">
                 {f.label}
               </dt>
               <dd className="mt-1.5 text-sm font-semibold leading-snug text-white">{f.value}</dd>

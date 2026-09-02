@@ -18,7 +18,7 @@ export default function CaseCard({ project }: { project: Project }) {
             {project.name}
           </Link>
         </h3>
-        <p className="font-mono text-[11px] uppercase tracking-wider text-gray-500">
+        <p className="font-mono text-[11px] uppercase tracking-wider text-gray-400">
           {project.segment}
         </p>
       </div>

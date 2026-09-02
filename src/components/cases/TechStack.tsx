@@ -13,7 +13,7 @@ export default function TechStack({ tech, limit }: { tech: readonly string[]; li
       ))}
       {rest > 0 && (
         <li>
-          <Pill className="text-gray-500">+{rest}</Pill>
+          <Pill className="text-gray-400">+{rest}</Pill>
         </li>
       )}
     </ul>

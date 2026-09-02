@@ -115,6 +115,10 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 96px;
   -webkit-text-size-adjust: 100%;
+  /* Fica no html, nunca no body: overflow no body (com html de altura
+     100%) transforma o body no contêiner de rolagem e quebra a
+     rolagem da janela, âncoras e position: fixed. */
+  overflow-x: clip;
 }
 
 body {
@@ -122,7 +126,6 @@ body {
   color: #ffffff;
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   line-height: 1.6;
-  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

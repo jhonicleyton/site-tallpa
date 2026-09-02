@@ -64,7 +64,7 @@ export default function ContatoPage() {
               processo e apontamos onde estão as oportunidades reais.
             </p>
 
-            <h2 className="mt-11 font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-500">
+            <h2 className="mt-11 font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-400">
               O que acontece depois do envio
             </h2>
             <ol className="mt-5 flex flex-col gap-5">
@@ -87,7 +87,7 @@ export default function ContatoPage() {
             </ol>
 
             <div className="mt-11 border-t border-line pt-7">
-              <h2 className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-500">
+              <h2 className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-400">
                 Canais diretos
               </h2>
               <ul className="mt-4 flex flex-col gap-3">

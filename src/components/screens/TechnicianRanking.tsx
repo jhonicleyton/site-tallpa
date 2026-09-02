@@ -14,11 +14,11 @@ export default function TechnicianRanking() {
     <div className="p-4 sm:p-5">
       <div className="mb-3 flex items-baseline justify-between">
         <div className="font-display text-sm font-semibold text-white">Ranking da equipe</div>
-        <span className="font-mono text-[10px] text-gray-500">por produção no período</span>
+        <span className="font-mono text-[10px] text-gray-400">por produção no período</span>
       </div>
 
       <div className="overflow-hidden rounded-2xl border border-line bg-bg-1/60">
-        <div className="grid grid-cols-[auto_1fr_auto_auto] gap-3 border-b border-line px-3.5 py-2.5 text-[9px] font-semibold uppercase tracking-[0.14em] text-gray-500">
+        <div className="grid grid-cols-[auto_1fr_auto_auto] gap-3 border-b border-line px-3.5 py-2.5 text-[9px] font-semibold uppercase tracking-[0.14em] text-gray-400">
           <span>#</span>
           <span>Técnico</span>
           <span className="text-right">Sucesso</span>

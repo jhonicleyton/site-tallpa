@@ -25,7 +25,7 @@ export default function CtaBand() {
               Falar no WhatsApp
             </ButtonLink>
           </div>
-          <p className="mt-5 text-xs text-gray-500">{cta.promise}</p>
+          <p className="mt-5 text-xs text-gray-400">{cta.promise}</p>
         </div>
       </Container>
     </section>
