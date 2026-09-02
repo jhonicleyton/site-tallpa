@@ -88,7 +88,8 @@ export async function submitLead(_prev: LeadState, formData: FormData): Promise<
       // Nesse caso, reenvia sem ela — o interesse segue no e-mail.
       const missingColumn = /interest/i.test(error.message);
       if (missingColumn) {
-        const { interest: _omit, ...withoutInterest } = lead;
+        const withoutInterest = { ...lead };
+        delete (withoutInterest as Partial<typeof lead>).interest;
         const retry = await supabase.from("leads").insert([withoutInterest]);
         stored = !retry.error;
         if (retry.error) console.error("[submitLead] Supabase (retry):", retry.error);

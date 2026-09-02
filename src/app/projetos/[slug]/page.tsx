@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
-import Section, { Container, SectionHeading } from "@/components/ui/Section";
+import Section, { SectionHeading } from "@/components/ui/Section";
 import Card from "@/components/ui/Card";
 import Badge from "@/components/ui/Badge";
 import { ButtonLink } from "@/components/ui/Button";

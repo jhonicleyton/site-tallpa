@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useEffect, useState } from "react";
+import { useActionState, useState } from "react";
 import { ArrowRight, CheckCircle2, MessageCircle } from "lucide-react";
 import { submitLead, type LeadState } from "@/app/actions";
 import Button, { ButtonLink } from "@/components/ui/Button";
@@ -21,10 +21,6 @@ const INTERESTS = [
 export default function DiagnosticForm() {
   const [state, formAction, isPending] = useActionState<LeadState, FormData>(submitLead, null);
   const [interest, setInterest] = useState<string>("");
-  const [startedAt, setStartedAt] = useState<number>(0);
-
-  // Carimbo de tempo definido no cliente: entra na checagem anti-spam.
-  useEffect(() => setStartedAt(Date.now()), []);
 
   const errors = state?.fieldErrors;
 
@@ -49,7 +45,15 @@ export default function DiagnosticForm() {
   return (
     <Card variant="stat" className="p-6 sm:p-8">
       <form action={formAction} className="flex flex-col gap-6" noValidate>
-        <input type="hidden" name="startedAt" value={startedAt} />
+        {/* Carimbo de carregamento, preenchido no cliente — entra na checagem
+            anti-spam. Escrito direto no DOM: não é estado de render. */}
+        <input
+          type="hidden"
+          name="startedAt"
+          ref={(el) => {
+            if (el && !el.value) el.value = String(Date.now());
+          }}
+        />
 
         {/* Isca anti-spam — invisível para pessoas, visível para robôs. */}
         <div aria-hidden="true" className="absolute left-[-9999px] h-0 w-0 overflow-hidden">

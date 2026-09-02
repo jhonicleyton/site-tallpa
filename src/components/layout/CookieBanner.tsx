@@ -52,12 +52,12 @@ export default function CookieBanner() {
         aria-label="Consentimento de cookies"
         className="fixed bottom-0 left-0 right-0 z-50 p-4 sm:p-6"
       >
-        <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-start sm:items-center gap-4 bg-dark-card/80 backdrop-blur-md border border-dark-border rounded-2xl px-6 py-5 shadow-lg">
+        <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-start sm:items-center gap-4 bg-bg-card/80 backdrop-blur-md border border-line rounded-2xl px-6 py-5 shadow-lg">
           <div className="flex-1">
-            <p className="text-text-light font-semibold mb-1">Controle sua Privacidade</p>
-            <p className="text-text-muted text-sm leading-relaxed">
+            <p className="text-white font-semibold mb-1">Controle sua Privacidade</p>
+            <p className="text-gray-400 text-sm leading-relaxed">
               Utilizamos cookies para otimizar sua experiência e analisar o tráfego conforme nossa{" "}
-              <Link href="/privacidade" className="text-brand-cyan hover:underline">
+              <Link href="/privacidade" className="text-cyan-400 hover:underline">
                 Política de Privacidade
               </Link>.
             </p>

@@ -23,9 +23,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Fecha ao navegar — não ao rolar, como fazia a versão anterior.
-  useEffect(() => setMenuOpen(false), [pathname]);
-
   // Esc fecha e devolve o foco ao botão.
   useEffect(() => {
     if (!menuOpen) return;
@@ -118,6 +115,7 @@ export default function Navbar() {
               <Link
                 href={link.href}
                 aria-current={isActive(link.href) ? "page" : undefined}
+                onClick={() => setMenuOpen(false)}
                 className="flex items-center justify-between py-4 text-base text-gray-200 transition-colors hover:text-cyan-300"
               >
                 {link.label}
@@ -129,7 +127,7 @@ export default function Navbar() {
           ))}
         </ul>
         <div className="px-4 pb-5 pt-2">
-          <ButtonLink href={cta.href} className="w-full">
+          <ButtonLink href={cta.href} className="w-full" onClick={() => setMenuOpen(false)}>
             {cta.label}
           </ButtonLink>
         </div>
