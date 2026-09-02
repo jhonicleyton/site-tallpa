@@ -49,7 +49,7 @@ export default function Navbar() {
     >
       <nav
         aria-label="Navegação principal"
-        className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-8 px-4 sm:px-6 lg:px-8"
+        className="mx-auto flex h-16 max-w-site items-center justify-between gap-8 px-4 sm:px-6 lg:px-8"
       >
         <Link
           href="/"
