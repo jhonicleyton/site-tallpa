@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Instagram, Linkedin, Mail, MessageCircle } from "lucide-react";
 import TallpaMark from "@/components/ui/TallpaMark";
-import { Container } from "@/components/ui/Section";
 import { contact, cta, site, social, whatsappUrl } from "@/content/site";
 
 const solutions = [
@@ -28,7 +27,7 @@ const channels = [
 export default function Footer() {
   return (
     <footer className="mt-auto border-t border-line bg-gradient-to-b from-transparent to-bg-1/60">
-      <Container className="py-14 sm:py-16">
+      <div className="px-5 py-14 sm:px-8 sm:py-16 lg:px-12">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div className="flex flex-col gap-4 lg:pr-6">
             <Link href="/" className="flex items-center gap-2.5" aria-label={`${site.name}, início`}>
@@ -101,7 +100,7 @@ export default function Footer() {
           </p>
           <p className="font-mono text-[11px] text-gray-400">Santa Catarina · Brasil</p>
         </div>
-      </Container>
+      </div>
     </footer>
   );
 }
