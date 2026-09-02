@@ -31,10 +31,9 @@ export const whatsappUrl = `https://wa.me/${contact.phone.replace(/\D/g, "")}?te
 export const social = {
   instagram: "https://www.instagram.com/tallpasolutions",
   linkedin: "https://www.linkedin.com/company/tallpa",
-  github: "https://github.com/tallpa",
 } as const;
 
-/** CTA único do site — decisão de projeto, ver PRD §7. */
+/** CTA único do site. Decisão de projeto, ver PRD §7. */
 export const cta = {
   label: "Solicitar diagnóstico gratuito",
   labelShort: "Diagnóstico gratuito",

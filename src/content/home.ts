@@ -36,7 +36,7 @@ export const problems: { icon: LucideIcon; title: string; description: string }[
   },
   {
     icon: ShieldAlert,
-    title: "Todo mundo enxerga tudo — ou quase nada",
+    title: "Todo mundo enxerga tudo, ou quase nada",
     description:
       "Sem recorte por papel, ou a informação vaza, ou a pessoa depende de outra para ver o mínimo do trabalho dela.",
   },
@@ -48,13 +48,13 @@ export const problems: { icon: LucideIcon; title: string; description: string }[
   },
 ];
 
-/** Como a Tallpa trabalha — versão curta do método, para a home. */
+/** Como a Tallpa trabalha. Versão curta do método, para a home. */
 export const method: { step: string; title: string; description: string }[] = [
   {
     step: "01",
     title: "Diagnóstico",
     description:
-      "Mapeamos o fluxo real antes de propor qualquer coisa. Se o problema for de processo, dizemos isso — mesmo que signifique um projeto menor.",
+      "Mapeamos o fluxo real antes de propor qualquer coisa. Se o problema for de processo, dizemos isso, mesmo que signifique um projeto menor.",
   },
   {
     step: "02",
@@ -102,7 +102,7 @@ export const segments: { title: string; description: string }[] = [
 export const faq: { q: string; a: string }[] = [
   {
     q: "O que é o diagnóstico gratuito?",
-    a: "Uma conversa em que entendemos o seu processo e apontamos onde estão as oportunidades reais de ganho. Você sai dela com uma leitura objetiva do problema — mesmo que a conclusão seja que não precisa de um sistema agora. Não é apresentação comercial e não tem compromisso.",
+    a: "Uma conversa em que entendemos o seu processo e apontamos onde estão as oportunidades reais de ganho. Você sai dela com uma leitura objetiva do problema, mesmo que a conclusão seja que não precisa de um sistema agora. Não é apresentação comercial e não tem compromisso.",
   },
   {
     q: "Vocês trabalham com sistema pronto ou desenvolvem do zero?",
@@ -114,7 +114,7 @@ export const faq: { q: string; a: string }[] = [
   },
   {
     q: "Quanto tempo leva um projeto?",
-    a: "Trabalhamos em ciclos curtos, e cada ciclo termina com algo utilizável de ponta a ponta. Isso significa que você vê o sistema funcionando bem antes de ele estar completo. O prazo total depende do escopo, e ele é fechado no diagnóstico — não estimado por telefone.",
+    a: "Trabalhamos em ciclos curtos, e cada ciclo termina com algo utilizável de ponta a ponta. Isso significa que você vê o sistema funcionando bem antes de ele estar completo. O prazo total depende do escopo, e ele é fechado no diagnóstico, não estimado por telefone.",
   },
   {
     q: "Quem fica com o código e os dados?",
@@ -122,6 +122,6 @@ export const faq: { q: string; a: string }[] = [
   },
   {
     q: "Vocês dão suporte depois de entregar?",
-    a: "Sim. Sistema em produção precisa de acompanhamento — o uso real sempre revela coisas que o planejamento não previu. O formato do acompanhamento é combinado caso a caso.",
+    a: "Sim. Sistema em produção precisa de acompanhamento, porque o uso real sempre revela coisas que o planejamento não previu. O formato do acompanhamento é combinado caso a caso.",
   },
 ];

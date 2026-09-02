@@ -11,7 +11,7 @@ import { cn } from "@/components/ui/cn";
  * Galeria das interfaces do case.
  *
  * As telas são recriações fiéis dos layouts, construídas com os tokens
- * visuais dos próprios projetos — e sempre rotuladas como tal. Quando
+ * visuais dos próprios projetos, e sempre rotuladas como tal. Quando
  * houver capturas reais, basta trocar `Component` por `<Image>` no
  * registry: a estrutura não muda.
  */
@@ -56,7 +56,7 @@ export default function ScreenGallery({ keys }: { keys: readonly ScreenKey[] }) 
         <Info className="mt-px h-3.5 w-3.5 shrink-0" strokeWidth={1.5} aria-hidden="true" />
         <span>
           Recriação da interface, construída com os tokens visuais do projeto. Os números exibidos
-          são ilustrativos — nenhum dado real de cliente é reproduzido.
+          são ilustrativos, e nenhum dado real de cliente é reproduzido.
         </span>
       </p>
     </div>

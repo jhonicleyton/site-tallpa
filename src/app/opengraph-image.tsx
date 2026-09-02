@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Tallpa Solutions — sistemas, indicadores e automação para operações";
+export const alt = "Tallpa Solutions: sistemas, indicadores e automação para operações";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -9,7 +9,7 @@ export const contentType = "image/png";
  * Substitui o antigo /images/*.svg, que não renderiza em
  * WhatsApp, LinkedIn nem Twitter.
  *
- * Atenção: ImageResponse (Satori) só suporta flexbox — nada de grid.
+ * Atenção: ImageResponse (Satori) só suporta flexbox. Nada de grid.
  */
 export default function OpengraphImage() {
   return new ImageResponse(
@@ -75,7 +75,7 @@ export default function OpengraphImage() {
             Menos controles dispersos. Mais dados para decidir.
           </span>
           <span style={{ fontSize: 26, color: "#9A9FB4", maxWidth: 900, lineHeight: 1.4 }}>
-            Sistemas sob medida, indicadores confiáveis e automação — construídos a partir da
+            Sistemas sob medida, indicadores confiáveis e automação, construídos a partir da
             realidade da sua operação.
           </span>
         </div>

@@ -27,11 +27,11 @@ const breadcrumb = {
 const principles = [
   {
     title: "Entendemos a operação antes do sistema",
-    body: "Passamos tempo com quem executa, não só com quem decide. O processo real quase nunca é o que está no fluxograma — e é o real que o sistema precisa atender.",
+    body: "Passamos tempo com quem executa, não só com quem decide. O processo real quase nunca é o que está no fluxograma, e é o real que o sistema precisa atender.",
   },
   {
     title: "Dizemos quando não vale construir",
-    body: "Há problema operacional que se resolve com processo, e há caso em que uma ferramenta de mercado atende. Quando é assim, falamos — mesmo que o projeto encolha.",
+    body: "Há problema operacional que se resolve com processo, e há caso em que uma ferramenta de mercado atende. Quando é assim, falamos, mesmo que o projeto encolha.",
   },
   {
     title: "Registramos as decisões, não só o código",
@@ -43,7 +43,7 @@ const principles = [
   },
   {
     title: "Permissão é regra de servidor",
-    body: "Esconder um botão não é controle de acesso. O recorte é aplicado antes de o dado sair do banco — a interface só reflete o que já foi decidido lá atrás.",
+    body: "Esconder um botão não é controle de acesso. O recorte é aplicado antes de o dado sair do banco, e a interface só reflete o que já foi decidido lá atrás.",
   },
   {
     title: "Sistema em produção precisa de dono",
@@ -67,7 +67,7 @@ export default function SobrePage() {
               Sobre a Tallpa
             </p>
             <h1 className="mt-5 max-w-3xl font-display text-3xl font-bold leading-[1.06] tracking-tight text-white sm:text-4xl lg:text-5xl">
-              Operação, dados e tecnologia —{" "}
+              Operação, dados e tecnologia:{" "}
               <span className="text-gradient">as três, ou não funciona</span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-gray-200">
@@ -96,7 +96,7 @@ export default function SobrePage() {
           </p>
           <p>
             Não somos uma fábrica de software que recebe especificação pronta. O diagnóstico faz
-            parte da entrega — em vários projetos, o problema que o cliente descreveu na primeira
+            parte da entrega: em vários projetos, o problema que o cliente descreveu na primeira
             conversa não era o problema que resolvemos.
           </p>
         </div>

@@ -1,5 +1,5 @@
 /**
- * Campo de partículas do Hero — pontos de dado que respiram.
+ * Campo de partículas do Hero: pontos de dado que respiram.
  *
  * Posições fixas e determinísticas: o servidor e o cliente renderizam
  * exatamente o mesmo markup, sem risco de divergência de hidratação.

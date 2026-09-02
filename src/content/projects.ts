@@ -9,7 +9,7 @@
  * 3. Nenhum dado operacional, nome de pessoa, IP interno ou credencial.
  *
  * Para cadastrar um projeto novo: adicione um objeto a `projects`.
- * Nada mais precisa ser alterado — índice, rotas, sitemap e JSON-LD
+ * Nada mais precisa ser alterado: índice, rotas, sitemap e JSON-LD
  * são derivados daqui.
  */
 
@@ -26,7 +26,7 @@ export type Project = {
   category: string;
   segment: string;
   tagline: string;
-  /** Resumo curto — usado no card do índice. */
+  /** Resumo curto, usado no card do índice. */
   summary: string;
   problem: string[];
   solution: string[];
@@ -50,14 +50,14 @@ export const projects: Project[] = [
     segment: "Prestadora de serviços de campo em telecom",
     tagline: "O repasse de uma equipe inteira saiu da planilha e virou processo auditável.",
     summary:
-      "Plataforma multi-tenant que importa a produção do sistema da operadora, aplica um motor de regras de preço versionado e calcula o repasse de cada técnico — com fechamento aprovado e conferência do próprio técnico.",
+      "Plataforma multi-tenant que importa a produção do sistema da operadora, aplica um motor de regras de preço versionado e calcula o repasse de cada técnico, com fechamento aprovado e conferência do próprio técnico.",
     problem: [
       "O pagamento dos técnicos era calculado à mão, todo mês, sobre uma planilha exportada do sistema da operadora. A regra não é simples: o valor muda conforme o tipo de ordem de serviço, o motivo de uma visita improdutiva, o dia da semana e a existência de um segundo ponto.",
-      "O resultado era previsível. O fechamento consumia dias, ninguém conseguia refazer o cálculo de uma visita específica meses depois, e o técnico não tinha como conferir a própria pontuação — só recebia o valor final e a opção de aceitar.",
+      "O resultado era previsível. O fechamento consumia dias, ninguém conseguia refazer o cálculo de uma visita específica meses depois, e o técnico não tinha como conferir a própria pontuação. Recebia o valor final e a opção de aceitar.",
       "Qualquer mudança de tabela de preço obrigava a recomeçar a planilha do zero, sem forma de simular o efeito antes de valer.",
     ],
     solution: [
-      "Construímos uma plataforma que recebe a planilha, entende a produção e devolve o repasse calculado — com o caminho do cálculo visível em cada visita.",
+      "Construímos uma plataforma que recebe a planilha, entende a produção e devolve o repasse calculado, com o caminho do cálculo visível em cada visita.",
       "O coração é um motor de regras de preço versionado. A tabela vigente nunca é editada: cria-se uma nova versão em rascunho, simula-se o efeito sobre as visitas que já existem e só então ela é ativada. Nenhuma mudança de regra pega a operação de surpresa.",
       "O fechamento deixou de ser um arquivo e virou um ciclo: a gestão solicita a conferência, o técnico aprova ou contesta ordens específicas com justificativa, a gestão responde, e só então o período é fechado e marcado como pago.",
     ],
@@ -65,12 +65,12 @@ export const projects: Project[] = [
       {
         title: "Importação",
         description:
-          "A planilha de produção do período é enviada pela plataforma. O parser normaliza os dados, identifica ordens e visitas, e registra o upload com contadores e erros — reprocessável se algo vier errado.",
+          "A planilha de produção do período é enviada pela plataforma. O parser normaliza os dados, identifica ordens e visitas, e registra o upload com contadores e erros. Se algo vier errado, dá para reprocessar.",
       },
       {
         title: "Classificação",
         description:
-          "Visitas sem sucesso caem numa fila de motivos. A gestão define, por política, quais motivos são pagos e quais não — e a decisão vale dali em diante, sem retrabalho manual.",
+          "Visitas sem sucesso caem numa fila de motivos. A gestão define, por política, quais motivos são pagos e quais não. A decisão vale dali em diante, sem retrabalho manual.",
       },
       {
         title: "Cálculo",
@@ -136,7 +136,7 @@ export const projects: Project[] = [
       {
         title: "Regra de negócio que muda sem quebrar o passado",
         description:
-          "Preço não pode ser constante no código nem linha editável no banco. Modelamos a tabela como entidade versionada: cada visita guarda a versão que a precificou, então recalcular o passado é uma decisão explícita — nunca um efeito colateral de editar o presente.",
+          "Preço não pode ser constante no código nem linha editável no banco. Modelamos a tabela como entidade versionada: cada visita guarda a versão que a precificou, então recalcular o passado é uma decisão explícita, nunca um efeito colateral de editar o presente.",
       },
       {
         title: "Importação idempotente",
@@ -146,7 +146,7 @@ export const projects: Project[] = [
       {
         title: "Isolamento por papel",
         description:
-          "Quatro níveis de acesso sobre a mesma base. O técnico não pode enxergar dados de outro técnico, nem a margem da empresa. O corte é feito no banco, com políticas de linha — não na interface.",
+          "Quatro níveis de acesso sobre a mesma base. O técnico não pode enxergar dados de outro técnico, nem a margem da empresa. O corte é feito no banco, com políticas de linha, não na interface.",
       },
       {
         title: "Notificação com o app fechado",
@@ -155,7 +155,7 @@ export const projects: Project[] = [
       },
     ],
     benefits: [
-      "O fechamento virou um processo com etapas, responsáveis e registro — não um arquivo que passa de mão em mão",
+      "O fechamento virou um processo com etapas, responsáveis e registro, em vez de um arquivo que passa de mão em mão",
       "Cada valor pago é rastreável até a regra que o gerou",
       "Mudança de tabela de preço pode ser simulada antes de valer",
       "O técnico confere e contesta a própria pontuação, o que tira a discussão do WhatsApp e coloca no sistema",
@@ -178,23 +178,23 @@ export const projects: Project[] = [
     segment: "Provedor regional de internet",
     tagline: "O indicador estava preso num sistema sem API, dentro da rede. Tiramos ele de lá.",
     summary:
-      "Coletor agendado que extrai um sistema legado de dentro da rede corporativa e um portal na nuvem que consolida seis módulos de indicador — mais um módulo de ações onde o dado nasce no próprio portal.",
+      "Coletor agendado que extrai um sistema legado de dentro da rede corporativa e um portal na nuvem que consolida seis módulos de indicador, mais um módulo de ações onde o dado nasce no próprio portal.",
     problem: [
       "Os indicadores da operação viviam num sistema legado sem API, acessível apenas de dentro da rede da empresa. Cada análise significava alguém entrar no sistema, exportar um relatório e montar a leitura à mão.",
-      "Isso tinha dois custos. O primeiro é óbvio: tempo. O segundo é pior — como o dado só existia no momento em que alguém o exportava, não havia série histórica. Comparar dois meses era um projeto.",
+      "Isso tinha dois custos. O primeiro é óbvio: tempo. O segundo é pior: como o dado só existia no momento em que alguém o exportava, não havia série histórica. Comparar dois meses era um projeto.",
       "E os planos de ação que nasciam dessas análises viviam em planilha: sem dono, sem prazo e sem histórico de quem mudou o quê.",
     ],
     solution: [
       "Separamos o problema em duas metades, porque elas têm restrições opostas.",
       "Dentro da rede, um coletor agendado faz a extração do sistema legado e envia o resultado para um banco na nuvem. Ele roda sozinho, em horários fixos, e também sob demanda quando alguém pede atualização pelo portal.",
-      "Fora da rede, o portal lê apenas esse banco. Ele nunca fala com o sistema legado — o que é a razão de a arquitetura funcionar: a nuvem não alcança um endereço privado, e insistir nisso seria construir sobre areia.",
+      "Fora da rede, o portal lê apenas esse banco. Ele nunca fala com o sistema legado, e é justamente por isso que a arquitetura funciona: a nuvem não alcança um endereço privado, e insistir nisso seria construir sobre areia.",
       "Sobre essa base, o portal consolida seis módulos de indicador e adiciona um módulo de Ações, onde o dado passa a nascer no próprio portal, com responsável, prazo e histórico.",
     ],
     howItWorks: [
       {
         title: "Coleta agendada",
         description:
-          "Dentro da rede, o coletor extrai o sistema legado em horários fixos ao longo do dia. Um monitor registra sinal de vida — se a coleta parar, a operação sabe.",
+          "Dentro da rede, o coletor extrai o sistema legado em horários fixos ao longo do dia. Um monitor registra sinal de vida, então se a coleta parar, a operação sabe.",
       },
       {
         title: "Consolidação",
@@ -209,7 +209,7 @@ export const projects: Project[] = [
       {
         title: "Ação",
         description:
-          "Da leitura nasce o plano. O módulo de Ações registra responsável, prazo e andamento — com histórico que não se apaga.",
+          "Da leitura nasce o plano. O módulo de Ações registra responsável, prazo e andamento, com histórico que não se apaga.",
       },
     ],
     features: [
@@ -234,7 +234,7 @@ export const projects: Project[] = [
         group: "Governança",
         items: [
           "Três papéis independentes: administração, supervisão vinculada a equipes e gestão vinculada a áreas",
-          "Sem cadastro público — contas criadas pela administração, senha trocada pelo próprio usuário",
+          "Sem cadastro público: contas criadas pela administração, senha trocada pelo próprio usuário",
           "Tela de monitoramento da coleta, com sinal de vida e log",
         ],
       },
@@ -264,7 +264,7 @@ export const projects: Project[] = [
       {
         title: "Dado que não tem de onde voltar",
         description:
-          "Alguns módulos espelham o legado e podem ser recoletados. Outros — as ações e as ordens de serviço criadas no portal — só existem ali. Tratamos os dois tipos com regras diferentes: histórico append-only e proteção redobrada contra operação destrutiva.",
+          "Alguns módulos espelham o legado e podem ser recoletados. Outros, como as ações e as ordens de serviço criadas no portal, só existem ali. Tratamos os dois tipos com regras diferentes: histórico append-only e proteção redobrada contra operação destrutiva.",
       },
       {
         title: "Permissão que precisa ser real",
@@ -274,7 +274,7 @@ export const projects: Project[] = [
     ],
     benefits: [
       "O indicador saiu da exportação manual e passou a estar sempre atualizado, sem ninguém operar nada",
-      "A série histórica passou a existir — comparar períodos deixou de ser um projeto",
+      "A série histórica passou a existir, e comparar períodos deixou de ser um projeto",
       "O plano de ação ganhou dono, prazo e histórico, no mesmo lugar onde o problema aparece",
       "Cada pessoa enxerga exatamente o recorte que lhe cabe",
       "A operação sabe quando a coleta para, em vez de descobrir por um número estranho na tela",
@@ -296,7 +296,7 @@ export const projects: Project[] = [
     segment: "Empresa de fibra óptica, CFTV e infraestrutura de redes",
     tagline: "Comercial, obra, campo e almoxarifado deixaram de ser quatro ferramentas.",
     summary:
-      "Plataforma única que cobre o ciclo inteiro: do funil comercial à obra, da obra ao despacho do técnico, do técnico à baixa de material — com controle de acesso por cargo e trilha de auditoria.",
+      "Plataforma única que cobre o ciclo inteiro: do funil comercial à obra, da obra ao despacho do técnico, do técnico à baixa de material, com controle de acesso por cargo e trilha de auditoria.",
     problem: [
       "O comercial vivia numa ferramenta, as obras em outra, a agenda dos técnicos numa planilha e o almoxarifado num caderno. Nenhuma dessas peças conversava.",
       "O efeito prático: ninguém tinha a visão completa de um cliente, e a execução em campo só aparecia na gestão depois que alguém digitava.",
@@ -305,7 +305,7 @@ export const projects: Project[] = [
     solution: [
       "Construímos uma plataforma única, modular, onde cada área tem a própria tela e o mesmo dado por baixo.",
       "O comercial trabalha o funil e enxerga o perfil completo do cliente. A engenharia planeja a obra em fases e despacha os técnicos num quadro de arrastar e soltar, respeitando a capacidade de cada um. O técnico executa e encerra a ordem no celular. O almoxarifado controla produto, localização e movimentação.",
-      "Sobre tudo isso, um controle de acesso por cargo: cada pessoa entra e vê apenas o que o cargo dela permite — e o desvio é bloqueado no servidor, não escondido na interface.",
+      "Sobre tudo isso, um controle de acesso por cargo: cada pessoa entra e vê apenas o que o cargo dela permite, e o desvio é bloqueado no servidor, não escondido na interface.",
     ],
     howItWorks: [
       {
@@ -316,7 +316,7 @@ export const projects: Project[] = [
       {
         title: "Obra",
         description:
-          "Fechado o negócio, vira projeto com fases acompanháveis — e o cliente continua sendo o mesmo registro.",
+          "Fechado o negócio, vira projeto com fases acompanháveis, e o cliente continua sendo o mesmo registro.",
       },
       {
         title: "Despacho",
@@ -326,7 +326,7 @@ export const projects: Project[] = [
       {
         title: "Campo",
         description:
-          "O técnico recebe a agenda no celular, executa, dá baixa no material e encerra a ordem — mobile-first, feito para ser usado em pé.",
+          "O técnico recebe a agenda no celular, executa, dá baixa no material e encerra a ordem. É mobile-first, feito para ser usado em pé.",
       },
       {
         title: "Retorno",
@@ -388,7 +388,7 @@ export const projects: Project[] = [
       {
         title: "O celular é o ambiente principal, não a versão reduzida",
         description:
-          "O técnico usa o sistema em pé, com uma mão, muitas vezes com sinal ruim. A interface dele foi desenhada primeiro para 375px de largura — o desktop é que é a adaptação.",
+          "O técnico usa o sistema em pé, com uma mão, muitas vezes com sinal ruim. A interface dele foi desenhada primeiro para 375px de largura. O desktop é que é a adaptação.",
       },
       {
         title: "Dado pessoal sob LGPD",
@@ -419,7 +419,7 @@ export const getProject = (slug: string) => projects.find((p) => p.slug === slug
 export const relatedProjects = (slug: string, limit = 2) =>
   projects.filter((p) => p.slug !== slug).slice(0, limit);
 
-/** Todas as tecnologias citadas, únicas e ordenadas — usado no filtro do índice. */
+/** Todas as tecnologias citadas, únicas e ordenadas. Usado no filtro do índice. */
 export const allTech = [...new Set(projects.flatMap((p) => p.tech))].sort((a, b) =>
   a.localeCompare(b, "pt-BR"),
 );

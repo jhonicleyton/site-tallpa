@@ -42,7 +42,7 @@ export default function Badge({
   );
 }
 
-/** Pill compacta e monoespaçada — números, tags técnicas, versões. */
+/** Pill compacta e monoespaçada, para números, tags técnicas e versões. */
 export function Pill({ className, children }: { className?: string; children: ReactNode }) {
   return (
     <span

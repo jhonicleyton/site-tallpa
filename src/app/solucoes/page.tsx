@@ -39,7 +39,7 @@ export default function SolucoesPage() {
             <span className="text-gradient">operação sob controle</span>
           </>
         }
-        lede="Nem todo problema operacional precisa de um sistema novo. Começamos entendendo qual é o seu — e só então escolhemos a frente certa."
+        lede="Nem todo problema operacional precisa de um sistema novo. Começamos entendendo qual é o seu, e só então escolhemos a frente certa."
         headingAs="h1"
       >
         <nav aria-label="Índice das soluções" className="flex flex-wrap gap-2">

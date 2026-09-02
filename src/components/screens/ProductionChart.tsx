@@ -36,7 +36,7 @@ export default function ProductionChart() {
         <CartesianGrid stroke="rgba(255,255,255,0.04)" vertical={false} />
         <XAxis dataKey="dia" tick={{ fill: "#585D78", fontSize: 10 }} axisLine={false} tickLine={false} />
         {/* Dois eixos: ordens (dezenas) e valor (milhares) não cabem na
-            mesma escala — num eixo só, as barras somem sob a linha. */}
+            mesma escala. Num eixo só, as barras somem sob a linha. */}
         <YAxis
           yAxisId="os"
           tick={{ fill: "#585D78", fontSize: 10 }}

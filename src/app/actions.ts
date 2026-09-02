@@ -85,7 +85,7 @@ export async function submitLead(_prev: LeadState, formData: FormData): Promise<
     const { error } = await supabase.from("leads").insert([lead]);
     if (error) {
       // A coluna `interest` pode ainda não existir no banco (ver README).
-      // Nesse caso, reenvia sem ela — o interesse segue no e-mail.
+      // Nesse caso, reenvia sem ela. O interesse segue no e-mail.
       const missingColumn = /interest/i.test(error.message);
       if (missingColumn) {
         const withoutInterest = { ...lead };
@@ -114,7 +114,7 @@ export async function submitLead(_prev: LeadState, formData: FormData): Promise<
       from: "Tallpa Site <site@tallpa.com.br>",
       to: contact.email,
       replyTo: email || undefined,
-      subject: `Diagnóstico solicitado: ${name}${company ? ` — ${company}` : ""}`,
+      subject: `Diagnóstico solicitado: ${name}${company ? ` · ${company}` : ""}`,
       html: `
         <div style="font-family:system-ui,sans-serif;max-width:600px;margin:0 auto;padding:24px;background:#050814;color:#fff;border-radius:12px">
           <h2 style="color:#1BD8FF;margin:0 0 4px">Nova solicitação de diagnóstico</h2>

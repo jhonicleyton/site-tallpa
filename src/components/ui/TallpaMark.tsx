@@ -9,7 +9,7 @@ import { cn } from "./cn";
  * como um "T", como barras de gráfico e como pilares de dado.
  *
  * A animação é exatamente isso: os pilares se constroem em sequência,
- * da base para o topo, e assentam formando a marca. Não é enfeite —
+ * da base para o topo, e assentam formando a marca. Não é enfeite:
  * é a marca sendo construída, que é o que a Tallpa faz.
  *
  * Decisão técnica: SVG + Framer Motion, sem WebGL. São três polígonos;

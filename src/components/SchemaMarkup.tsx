@@ -3,7 +3,7 @@ import { solutions } from "@/content/solutions";
 
 /**
  * JSON-LD global. Validado no Rich Results Test como "Organização".
- * Os serviços são derivados de content/solutions.ts — cadastrar uma
+ * Os serviços são derivados de content/solutions.ts. Cadastrar uma
  * frente nova ali já a expõe aqui.
  */
 const schema = {
@@ -57,7 +57,7 @@ const schema = {
           },
         })),
       },
-      sameAs: [social.instagram, social.linkedin, social.github],
+      sameAs: [social.instagram, social.linkedin],
       priceRange: "$$",
       knowsLanguage: "pt-BR",
     },

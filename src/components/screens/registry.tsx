@@ -14,7 +14,7 @@ export type ScreenSpec = {
 
 /**
  * Recriações das interfaces, construídas com os tokens visuais reais
- * dos projetos. Os dados exibidos são ilustrativos — nenhum dado de
+ * dos projetos. Os dados exibidos são ilustrativos, e nenhum dado de
  * cliente é reproduzido. Ver aviso em <ScreenGallery />.
  */
 export const screens: Record<ScreenKey, ScreenSpec> = {

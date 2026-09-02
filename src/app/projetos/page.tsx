@@ -38,7 +38,7 @@ export default function ProjetosPage() {
             Sistemas <span className="text-gradient">em produção</span>, não protótipos
           </>
         }
-        lede="Três operações reais que trocaram planilha e controle disperso por sistema. Os cases estão anonimizados a pedido dos clientes — o que está descrito é o problema, a solução e como ela funciona."
+        lede="Três operações reais que trocaram planilha e controle disperso por sistema. Os cases estão anonimizados a pedido dos clientes. O que está descrito é o problema, a solução e como ela funciona."
         headingAs="h1"
       >
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">

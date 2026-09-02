@@ -62,7 +62,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
 
 export default Button;
 
-/** Mesma aparência do Button, mas navega — usa next/link (client navigation). */
+/** Mesma aparência do Button, mas navega. Usa next/link (client navigation). */
 export function ButtonLink({
   href,
   variant = "primary",

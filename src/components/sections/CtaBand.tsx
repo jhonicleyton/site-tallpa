@@ -13,7 +13,7 @@ export default function CtaBand() {
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-gray-300">
             Uma conversa de diagnóstico. Você descreve o gargalo, nós apontamos o que dá para
-            resolver — inclusive quando a resposta é que não precisa de sistema agora.
+            resolver, inclusive quando a resposta é que não precisa de sistema agora.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <ButtonLink href={cta.href} size="lg">

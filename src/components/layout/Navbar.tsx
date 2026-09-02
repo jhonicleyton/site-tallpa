@@ -54,7 +54,7 @@ export default function Navbar() {
         <Link
           href="/"
           className="flex shrink-0 items-center gap-2.5"
-          aria-label={`${site.name} — página inicial`}
+          aria-label={`${site.name}, página inicial`}
         >
           <TallpaMark className="h-8 w-8" glow={false} title={site.name} />
           <span className="font-display text-[15px] font-semibold tracking-tight text-white">

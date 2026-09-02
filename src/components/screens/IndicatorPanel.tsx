@@ -28,7 +28,7 @@ export default function IndicatorPanel() {
       <div className="grid gap-3 lg:grid-cols-[1.1fr_1fr]">
         <div className="rounded-2xl border border-line bg-bg-1/60 p-3.5">
           <div className="mb-3 text-[9px] font-semibold uppercase tracking-[0.14em] text-gray-400">
-            Índice de reincidência — tendência mensal
+            Índice de reincidência · tendência mensal
           </div>
           <div className="flex h-[110px] items-end gap-2">
             {meses.map((v, i) => (
@@ -51,7 +51,7 @@ export default function IndicatorPanel() {
 
         <div className="rounded-2xl border border-line bg-bg-1/60 p-3.5">
           <div className="mb-3 text-[9px] font-semibold uppercase tracking-[0.14em] text-gray-400">
-            Causa raiz — distribuição
+            Causa raiz · distribuição
           </div>
           <div className="flex flex-col gap-3">
             {causas.map((c) => (

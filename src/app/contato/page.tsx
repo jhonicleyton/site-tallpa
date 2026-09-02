@@ -24,7 +24,7 @@ const steps = [
   {
     icon: Clock,
     title: "Respondemos em até 24h úteis",
-    body: "Pelo canal que você informar — e-mail ou WhatsApp. Sem fila de atendimento e sem robô.",
+    body: "Pelo canal que você informar, e-mail ou WhatsApp. Sem fila de atendimento e sem robô.",
   },
   {
     icon: Search,
@@ -34,7 +34,7 @@ const steps = [
   {
     icon: ShieldCheck,
     title: "Uma leitura objetiva, sem venda",
-    body: "Você sai com o que dá para resolver e por onde começar — inclusive quando a resposta é que não precisa de sistema agora.",
+    body: "Você sai com o que dá para resolver e por onde começar, inclusive quando a resposta é que não precisa de sistema agora.",
   },
 ];
 

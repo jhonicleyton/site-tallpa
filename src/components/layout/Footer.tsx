@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Github, Instagram, Linkedin, Mail, MessageCircle } from "lucide-react";
+import { Instagram, Linkedin, Mail, MessageCircle } from "lucide-react";
 import TallpaMark from "@/components/ui/TallpaMark";
 import { Container } from "@/components/ui/Section";
 import { contact, cta, site, social, whatsappUrl } from "@/content/site";
@@ -23,7 +23,6 @@ const channels = [
   { label: contact.phoneLabel, href: whatsappUrl, Icon: MessageCircle, external: true },
   { label: "@tallpasolutions", href: social.instagram, Icon: Instagram, external: true },
   { label: "LinkedIn", href: social.linkedin, Icon: Linkedin, external: true },
-  { label: "GitHub", href: social.github, Icon: Github, external: true },
 ];
 
 export default function Footer() {
@@ -32,7 +31,7 @@ export default function Footer() {
       <Container className="py-14 sm:py-16">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div className="flex flex-col gap-4 lg:pr-6">
-            <Link href="/" className="flex items-center gap-2.5" aria-label={`${site.name} — início`}>
+            <Link href="/" className="flex items-center gap-2.5" aria-label={`${site.name}, início`}>
               <TallpaMark className="h-9 w-9" title={site.name} />
               <span className="font-display text-base font-semibold text-white">
                 Tallpa

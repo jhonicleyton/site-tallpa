@@ -6,7 +6,7 @@ export default function Segments() {
     <Section
       eyebrow="Quem atendemos"
       title="Operações onde o campo é o negócio"
-      lede="Não é restrição — é onde temos repertório acumulado e conseguimos ir mais rápido."
+      lede="Não é restrição. É onde temos repertório acumulado e conseguimos ir mais rápido."
     >
       <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-2">
         {segments.map(({ title, description }) => (

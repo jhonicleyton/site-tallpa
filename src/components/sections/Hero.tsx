@@ -7,7 +7,7 @@ import { cta } from "@/content/site";
 import { projects } from "@/content/projects";
 
 /**
- * Hero — apresentação da marca.
+ * Hero: a apresentação da marca.
  *
  * Os três pilares da logo se constroem em sequência, da base para o topo.
  * Não é ornamento: a marca sendo montada é exatamente o que a Tallpa faz.

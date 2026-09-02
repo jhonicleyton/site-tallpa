@@ -31,7 +31,7 @@ export default function DiagnosticForm() {
         <h3 className="font-display text-xl font-semibold text-white">Recebemos a sua solicitação</h3>
         <p className="max-w-sm text-sm leading-relaxed text-gray-400">
           Você recebe um retorno em até <strong className="text-gray-200">24h úteis</strong> pelo
-          canal informado. O primeiro contato é uma conversa de diagnóstico — sem proposta e sem
+          canal informado. O primeiro contato é uma conversa de diagnóstico, sem proposta e sem
           compromisso.
         </p>
         <ButtonLink href={whatsappUrl} variant="secondary" size="sm" className="mt-1">
@@ -45,7 +45,7 @@ export default function DiagnosticForm() {
   return (
     <Card variant="stat" className="p-6 sm:p-8">
       <form action={formAction} className="flex flex-col gap-6" noValidate>
-        {/* Carimbo de carregamento, preenchido no cliente — entra na checagem
+        {/* Carimbo de carregamento, preenchido no cliente. Entra na checagem
             anti-spam. Escrito direto no DOM: não é estado de render. */}
         <input
           type="hidden"
@@ -55,13 +55,13 @@ export default function DiagnosticForm() {
           }}
         />
 
-        {/* Isca anti-spam — invisível para pessoas, visível para robôs. */}
+        {/* Isca anti-spam: invisível para pessoas, visível para robôs. */}
         <div aria-hidden="true" className="absolute left-[-9999px] h-0 w-0 overflow-hidden">
           <label htmlFor="website">Não preencha este campo</label>
           <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
         </div>
 
-        {/* 1 — Interesse */}
+        {/* 1. Interesse */}
         <fieldset>
           <legend className="mb-3 text-[11px] font-medium uppercase tracking-[0.14em] text-gray-400">
             1. Sobre o que quer conversar?
@@ -95,7 +95,7 @@ export default function DiagnosticForm() {
           )}
         </fieldset>
 
-        {/* 2 — Identificação */}
+        {/* 2. Identificação */}
         <fieldset className="flex flex-col gap-4">
           <legend className="mb-1 text-[11px] font-medium uppercase tracking-[0.14em] text-gray-400">
             2. Quem é você?
@@ -159,11 +159,11 @@ export default function DiagnosticForm() {
             </div>
           </div>
           <Help id="hint-contato" error={Boolean(errors?.contact)}>
-            {errors?.contact ?? "Basta um dos dois — usamos o canal que você preferir."}
+            {errors?.contact ?? "Basta um dos dois. Usamos o canal que você preferir."}
           </Help>
         </fieldset>
 
-        {/* 3 — Contexto */}
+        {/* 3. Contexto */}
         <fieldset className="flex flex-col gap-1.5">
           <legend className="mb-2 text-[11px] font-medium uppercase tracking-[0.14em] text-gray-400">
             3. Qual o principal gargalo hoje?

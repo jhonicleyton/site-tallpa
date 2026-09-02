@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function PrivacidadePage() {
   return (
     <section className="relative overflow-hidden">
-      {/* Glow principal — topo */}
+      {/* Glow principal, no topo */}
       <div
         aria-hidden="true"
         className="absolute inset-0 pointer-events-none"
@@ -18,7 +18,7 @@ export default function PrivacidadePage() {
             "radial-gradient(ellipse 75% 55% at 50% -5%, rgba(0,194,255,0.13) 0%, rgba(0,123,255,0.07) 45%, transparent 72%)",
         }}
       />
-      {/* Glow secundário — canto inferior direito */}
+      {/* Glow secundário, canto inferior direito */}
       <div
         aria-hidden="true"
         className="absolute bottom-0 right-0 w-[500px] h-[500px] pointer-events-none"

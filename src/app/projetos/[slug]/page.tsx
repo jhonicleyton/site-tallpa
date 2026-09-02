@@ -236,7 +236,7 @@ export default async function ProjetoPage({ params }: { params: Promise<{ slug: 
               Quer uma solução parecida?
             </h2>
             <p className="text-sm leading-relaxed text-gray-400">
-              Começamos entendendo a sua operação — não vendendo este sistema. {cta.promise}
+              Começamos entendendo a sua operação, não vendendo este sistema. {cta.promise}
             </p>
             <ButtonLink href={cta.href} className="mt-1 w-full">
               {cta.label}
