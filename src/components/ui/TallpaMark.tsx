@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { useId } from "react";
+import { useId, useSyncExternalStore } from "react";
 import { cn } from "./cn";
 
 /**
@@ -17,7 +17,24 @@ import { cn } from "./cn";
  * o que 3 KB de SVG desenham com mais nitidez.
  *
  * `prefers-reduced-motion` → marca já montada, sem sequência e sem pulso.
+ *
+ * A animação só existe com a aba em primeiro plano. Em aba de fundo o
+ * navegador congela o requestAnimationFrame, e o estado inicial dos
+ * polígonos é opacity 0: a marca simplesmente sumiria para quem abrisse
+ * o site em nova aba. Fora isso, renderiza a marca pronta.
  */
+
+/** `true` só quando a aba está em primeiro plano. Falso no servidor. */
+function usePageVisible() {
+  return useSyncExternalStore(
+    (onChange) => {
+      document.addEventListener("visibilitychange", onChange);
+      return () => document.removeEventListener("visibilitychange", onChange);
+    },
+    () => document.visibilityState === "visible",
+    () => false,
+  );
+}
 
 const PILLARS = [
   { points: "110,188 172,156 172,344 110,312", delay: 0 },
@@ -40,7 +57,8 @@ export default function TallpaMark({
   const gradientId = `tallpa-grad-${uid}`;
   const glowId = `tallpa-glow-${uid}`;
   const prefersReduced = useReducedMotion();
-  const shouldAnimate = animated && !prefersReduced;
+  const visible = usePageVisible();
+  const shouldAnimate = animated && !prefersReduced && visible;
 
   return (
     <svg

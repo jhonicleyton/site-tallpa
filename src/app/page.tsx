@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Hero from "@/components/sections/Hero";
+import ProofStrip from "@/components/sections/ProofStrip";
 import Problems from "@/components/sections/Problems";
 import Solutions from "@/components/sections/Solutions";
 import FeaturedProjects from "@/components/sections/FeaturedProjects";
@@ -50,6 +51,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <Hero />
+      <ProofStrip />
       <Problems />
       <Solutions />
       <FeaturedProjects />
