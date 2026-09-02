@@ -1,213 +1,184 @@
-import Link from "next/link";
 import type { Metadata } from "next";
-import {
-  ArrowRight,
-  SearchCode,
-  Map,
-  Layers,
-  Database,
-  Code2,
-  Rocket,
-} from "lucide-react";
-import GlassCard from "@/components/ui/GlassCard";
+import { ArrowRight, Check } from "lucide-react";
+import Section, { Container } from "@/components/ui/Section";
+import Card from "@/components/ui/Card";
+import { ButtonLink } from "@/components/ui/Button";
+import TallpaMark from "@/components/ui/TallpaMark";
+import { method } from "@/content/home";
+import { cta, site } from "@/content/site";
+import { projects } from "@/content/projects";
 
 export const metadata: Metadata = {
   title: "Sobre a Tallpa",
   description:
-    "Conheça a metodologia IMPACT: 6 etapas de engenharia de software focadas em resultados reais de negócio, do diagnóstico ao deploy.",
-  alternates: {
-    canonical: "/sobre",
-  },
-  openGraph: {
-    images: [
-      {
-        url: "/images/tallpa-dashboard-mockup.svg",
-        width: 1200,
-        height: 630,
-        alt: "Tallpa Solutions — Sobre a Empresa",
-      },
-    ],
-  },
+    "Somos uma casa de engenharia que entra em operações de campo e devolve dado consolidado, indicador confiável e um sistema que a equipe usa todo dia.",
+  alternates: { canonical: "/sobre" },
 };
 
-const breadcrumbSchema = {
+const breadcrumb = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
-    {
-      "@type": "ListItem",
-      position: 1,
-      name: "Home",
-      item: "https://tallpa.com.br",
-    },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "Sobre a Tallpa",
-      item: "https://tallpa.com.br/sobre",
-    },
+    { "@type": "ListItem", position: 1, name: "Início", item: site.url },
+    { "@type": "ListItem", position: 2, name: "Sobre a Tallpa", item: `${site.url}/sobre` },
   ],
 };
 
-const impact = [
+const principles = [
   {
-    letter: "I",
-    icon: SearchCode,
-    label: "Imersão",
-    description:
-      "Mergulhamos no seu negócio antes de escrever uma linha de código. Entendemos a dor real, o contexto operacional e os objetivos que fazem sentido para você — não para nós.",
+    title: "Entendemos a operação antes do sistema",
+    body: "Passamos tempo com quem executa, não só com quem decide. O processo real quase nunca é o que está no fluxograma, e é o real que o sistema precisa atender.",
   },
   {
-    letter: "M",
-    icon: Map,
-    label: "Mapeamento",
-    description:
-      "Traduzimos o problema de negócio em arquitetura de solução. Desenhamos os fluxos, as integrações e os limites do sistema antes que qualquer decisão técnica seja tomada.",
+    title: "Dizemos quando não vale construir",
+    body: "Há problema operacional que se resolve com processo, e há caso em que uma ferramenta de mercado atende. Quando é assim, falamos, mesmo que o projeto encolha.",
   },
   {
-    letter: "P",
-    icon: Layers,
-    label: "Prototipagem",
-    description:
-      "Validamos visualmente a solução com protótipos navegáveis. Você aprova a experiência e a lógica de UX antes do desenvolvimento — eliminando retrabalho no final.",
+    title: "Registramos as decisões, não só o código",
+    body: "Cada escolha de arquitetura fica documentada com o motivo e as alternativas descartadas. É o que permite outra pessoa assumir o sistema sem arqueologia.",
   },
   {
-    letter: "A",
-    icon: Database,
-    label: "Arquitetura",
-    description:
-      "Definimos banco de dados, stack tecnológico e padrões de código com base no volume, no crescimento esperado e na equipe que vai manter o sistema depois.",
+    title: "Entregamos em ciclos curtos",
+    body: "Cada ciclo termina com algo utilizável de ponta a ponta. Você vê funcionando antes de estar pronto, e corrige o rumo enquanto ainda é barato.",
   },
   {
-    letter: "C",
-    icon: Code2,
-    label: "Código",
-    description:
-      "Desenvolvimento ágil com entregas incrementais, revisão contínua e código limpo. Você acompanha o progresso em tempo real — sem surpresas no prazo e no escopo.",
+    title: "Permissão é regra de servidor",
+    body: "Esconder um botão não é controle de acesso. O recorte é aplicado antes de o dado sair do banco, e a interface só reflete o que já foi decidido lá atrás.",
   },
   {
-    letter: "T",
-    icon: Rocket,
-    label: "Tração",
-    description:
-      "Deploy, monitoramento de performance e suporte pós-lançamento. O sistema vai ao ar com observabilidade configurada — e crescemos juntos conforme a demanda escala.",
+    title: "Sistema em produção precisa de dono",
+    body: "O uso real sempre revela o que o planejamento não previu. Acompanhamos depois do lançamento, porque software que ninguém mantém envelhece em meses.",
   },
 ];
 
 export default function SobrePage() {
   return (
-    <main className="bg-dark-bg min-h-screen">
+    <main id="conteudo" className="flex-1 pt-16">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
       />
-      {/* ─── Abertura §7.1 ─── */}
-      <section className="relative min-h-screen flex items-start bg-dark-bg overflow-hidden">
-        {/* Glow §7.3 */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 75% 55% at 50% -5%, rgba(0,194,255,0.13) 0%, rgba(0,123,255,0.07) 45%, transparent 72%)",
-          }}
-        />
-        <div
-          aria-hidden="true"
-          className="absolute bottom-0 right-0 w-[500px] h-[500px] pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(circle at 80% 80%, rgba(0,123,255,0.08) 0%, transparent 60%)",
-          }}
-        />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-10 w-full">
-          {/* Eyebrow */}
-          <p className="text-brand-cyan text-sm font-semibold tracking-widest uppercase mb-4">
-            Sobre a Tallpa
-          </p>
-
-          {/* H1 */}
-          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-text-light leading-tight max-w-3xl mb-6">
-            Engenharia de Software focada em{" "}
-            <span className="text-gradient-electric">Resultados Reais.</span>
-          </h1>
-
-          {/* Subtítulo */}
-          <p className="text-text-muted text-lg sm:text-xl max-w-2xl leading-relaxed">
-            Não somos apenas codificadores. Somos parceiros estratégicos que usam
-            tecnologia para resolver problemas complexos de negócios.
-          </p>
-        </div>
-      </section>
-
-      {/* ─── Metodologia IMPACT §7.2 ─── */}
-      <section className="bg-dark-bg py-10 sm:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <p className="text-brand-cyan text-sm font-semibold tracking-widest uppercase mb-3">
-              Como trabalhamos
+      <Section className="pb-10 pt-14 sm:pt-20">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.4fr_1fr]">
+          <div>
+            <p className="flex items-center gap-2.5 font-mono text-xs font-medium uppercase tracking-[0.18em] text-cyan-500">
+              <span aria-hidden="true" className="h-px w-6 bg-cyan-500" />
+              Sobre a Tallpa
             </p>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-text-light">
-              A Metodologia{" "}
-              <span className="text-gradient-electric">IMPACT</span>
-            </h2>
-            <p className="text-text-muted mt-4 max-w-xl mx-auto text-base leading-relaxed">
-              Seis etapas que transformam um problema de negócio em um sistema
-              que funciona — do primeiro diagnóstico ao deploy em produção.
+            <h1 className="mt-5 max-w-3xl font-display text-3xl font-bold leading-[1.06] tracking-tight text-white sm:text-4xl lg:text-5xl">
+              Operação, dados e tecnologia:{" "}
+              <span className="text-gradient">as três, ou não funciona</span>
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-gray-200">
+              A maior parte dos sistemas que não pegam falha no mesmo ponto: foram desenhados por
+              quem entende de tecnologia, mas não de operação. Nós entramos pelos dois lados.
             </p>
           </div>
+          <div className="hidden justify-center lg:flex">
+            <TallpaMark className="h-40 w-40" />
+          </div>
+        </div>
+      </Section>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {impact.map(({ letter, icon: Icon, label, description }, index) => (
-              <GlassCard key={letter} className="p-8 flex flex-col gap-5">
-                {/* Número + ícone */}
-                <div className="flex items-center gap-4">
-                  <span className="font-display text-4xl font-extrabold text-gradient-electric leading-none">
-                    {letter}
-                  </span>
-                  <div className="w-10 h-10 rounded-xl bg-brand-electric/10 flex items-center justify-center">
-                    <Icon size={20} className="text-brand-cyan" />
-                  </div>
-                  <span className="text-xs text-text-muted font-medium tracking-widest uppercase">
-                    Etapa {index + 1}
-                  </span>
-                </div>
+      <Section className="py-12 sm:py-16" eyebrow="Posicionamento" title="O que a Tallpa faz">
+        <div className="flex max-w-3xl flex-col gap-4 text-base leading-relaxed text-gray-300">
+          <p>
+            Trabalhamos com operações onde o campo é o negócio: telecom, provedores de internet,
+            infraestrutura, serviços com equipe distribuída. São operações que geram muito dado e
+            costumam controlá-lo em planilha, sistema de terceiro e memória de gente.
+          </p>
+          <p>
+            Nosso trabalho é transformar isso em fluxo controlado e mensurável. Isso significa três
+            coisas, geralmente nesta ordem: tirar o dado de onde ele está preso, estruturar o
+            indicador que responde à pergunta de gestão, e construir o sistema onde a operação
+            passa a acontecer.
+          </p>
+          <p>
+            Não somos uma fábrica de software que recebe especificação pronta. O diagnóstico faz
+            parte da entrega: em vários projetos, o problema que o cliente descreveu na primeira
+            conversa não era o problema que resolvemos.
+          </p>
+        </div>
+      </Section>
 
+      <Section
+        className="py-12 sm:py-16"
+        eyebrow="Como pensamos"
+        title="Seis princípios que valem para todo projeto"
+      >
+        <ul className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {principles.map(({ title, body }) => (
+            <li key={title}>
+              <Card variant="stat" className="flex h-full flex-col gap-2.5 p-6">
+                <h3 className="font-display text-base font-semibold leading-snug text-white">
+                  {title}
+                </h3>
+                <p className="text-sm leading-relaxed text-gray-400">{body}</p>
+              </Card>
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      <Section className="py-12 sm:py-16" eyebrow="Método" title="Do diagnóstico à produção">
+        <ol className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
+          {method.map(({ step, title, description }) => (
+            <li
+              key={step}
+              className="surface-topline rounded-2xl border border-line bg-gradient-to-b from-bg-1 to-bg-2/50 p-6"
+            >
+              <span aria-hidden="true" className="text-gradient font-display text-3xl font-bold leading-none">
+                {step}
+              </span>
+              <h3 className="mt-4 font-display text-base font-semibold text-white">{title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-gray-400">{description}</p>
+            </li>
+          ))}
+        </ol>
+      </Section>
+
+      <Section
+        className="py-12 sm:py-16"
+        eyebrow="Experiência prática"
+        title="O que já está rodando"
+        lede="Não é portfólio de protótipo. São sistemas que uma operação usa todos os dias."
+      >
+        <ul className="flex flex-col gap-3">
+          {projects.map((p) => (
+            <li
+              key={p.slug}
+              className="flex flex-col gap-2 rounded-xl border border-line bg-bg-1/50 p-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6"
+            >
+              <div className="flex items-start gap-3">
+                <Check className="mt-1 h-4 w-4 shrink-0 text-cyan-400" strokeWidth={2} aria-hidden="true" />
                 <div>
-                  <h3 className="font-display font-semibold text-text-light text-lg mb-2">
-                    {label}
-                  </h3>
-                  <p className="text-text-muted text-sm leading-relaxed">
-                    {description}
-                  </p>
+                  <span className="block text-sm font-semibold text-white">{p.name}</span>
+                  <span className="mt-0.5 block text-xs text-gray-400">{p.segment}</span>
                 </div>
-              </GlassCard>
-            ))}
-          </div>
-        </div>
-      </section>
+              </div>
+              <span className="shrink-0 font-mono text-[10px] uppercase tracking-wider text-cyan-500 sm:text-right">
+                {p.facts[0]?.value}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </Section>
 
-      {/* ─── CTA de fechamento §7.2 ─── */}
-      <section className="bg-dark-bg py-10 sm:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-text-light mb-4">
-            Pronto para construir algo{" "}
-            <span className="text-gradient-electric">que realmente funciona?</span>
+      <Section className="pb-20 pt-0">
+        <Container className="rounded-2xl border border-line bg-gradient-to-b from-bg-1 to-bg-2/50 px-6 py-10 text-center sm:px-10 sm:py-14">
+          <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">
+            Conte o seu gargalo. Nós dizemos o que dá para fazer.
           </h2>
-          <p className="text-text-muted text-lg max-w-xl mx-auto mb-10">
-            Converse com um engenheiro da Tallpa. Em 60 minutos, saímos com um
-            diagnóstico claro do que precisa ser feito e como fazer.
-          </p>
-          <Link
-            href="/#contato"
-            className="inline-flex items-center gap-2 bg-gradient-electric text-white font-semibold px-10 py-4 rounded-lg text-base shadow-lg hover:opacity-90 hover:shadow-[0_0_28px_rgba(0,123,255,0.45)] transition-all duration-200 active:scale-[0.98]"
-          >
-            Fale com um Engenheiro
-            <ArrowRight size={18} />
-          </Link>
-        </div>
-      </section>
+          <p className="mx-auto mt-3 max-w-xl text-base leading-relaxed text-gray-400">{cta.promise}</p>
+          <div className="mt-7 flex justify-center">
+            <ButtonLink href={cta.href} size="lg">
+              {cta.label}
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </ButtonLink>
+          </div>
+        </Container>
+      </Section>
     </main>
   );
 }

@@ -1,259 +1,190 @@
-# PRD: Site Institucional - Tallpa Solutions
-**Versão:** 3.2 — Atualizado em 20/03/2026 (banner de consentimento de cookies LGPD)
+# PRD, Site Institucional Tallpa Solutions
+**Versão:** 4.0, Reconstrução completa (02/09/2026)
+
+> Este documento descreve o site **como ele é hoje**. A v3.4 descrevia a versão
+> anterior, substituída integralmente. Mudou algo estrutural? Atualize aqui no
+> mesmo commit.
 
 ---
 
-## 1. Objetivo do Projeto
-Criar um site moderno, de alta performance e visualmente tecnológico para posicionar a Tallpa Solutions como uma Software House premium. O site deve converter visitantes em leads qualificados para projetos de sistemas, automação com IA e BI, e será publicado no domínio `tallpa.com.br`.
+## 1. Posicionamento
+
+A Tallpa entra em operações de campo, telecom, provedores de internet,
+infraestrutura, serviços com equipe distribuída, onde o controle vive em
+planilha e sistema de terceiro, e devolve **dado consolidado, indicador
+confiável e um sistema que a equipe usa todo dia**.
+
+O site é construído em torno dessa prova. O visitante precisa entender, em
+ordem: o que a Tallpa faz, que problema ela resolve, o que ela já construiu,
+por que confiar, e como pedir um diagnóstico.
+
+**CTA único em todo o site:** *Solicitar diagnóstico gratuito*. Não há
+demonstração nem teste gratuito, não existem hoje, e o site não promete o que
+não entrega.
 
 ---
 
-## 2. Stack Tecnológico (Confirmado e Implementado)
+## 2. O que mudou da v3.4 para a v4.0
+
+| # | Problema da versão anterior | Resolução |
+|---|---|---|
+| P1 | Zero prova de trabalho realizado; `/showcase` era dashboard fictício | Três cases narrados em `/projetos`, a partir de sistemas reais em produção |
+| P2 | KPIs "37% / 3.2× / +25k horas" apresentados como Impacto Comprovado, sem origem verificável | Removidos. Toda métrica exibida vem dos artefatos dos projetos |
+| P3 | Paleta (`#007BFF`) não batia com o gradiente da logo (`#4AF8FF→#1840FF`) | Migração para o Design System v1.0, que é a paleta da própria marca |
+| P4 | Tipografia divergente do design system (Manrope) | Poppins (display) · Inter (corpo) · JetBrains Mono (números) |
+| P5 | Regra §7.1 obrigava `min-h-screen` na abertura de toda página | Revogada. Altura natural; o componente `Section` padroniza o respiro |
+| P6 | Hero sem impacto: logo estática e mockup genérico | A marca se constrói em cena, três pilares subindo em sequência |
+| P7 | Copy genérica, contrariando a própria voz do design system | Reescrita: "Menos controles dispersos. Mais dados para decidir." |
+| P8 | Formulário sem qualificação, sem anti-spam, e o erro cru do Supabase vazava para a tela | Fluxo em 3 passos, validação por campo, honeypot + tempo mínimo, erro tratado |
+| P9 | README era o template do `create-next-app` | Reescrito: setup, variáveis, como editar, pendências |
+| P10 | OG image em `.svg`, não renderiza em WhatsApp nem LinkedIn | `opengraph-image.tsx` gera PNG 1200×630 no build |
+| P11 | `sitemap.ts` com `lastModified` em 2025 | Derivado do conteúdo, com data correta |
+| P12 | Navbar fechava o menu em qualquer scroll; `Services` usava `<a>` | Fecha ao navegar; `next/link` em toda navegação interna |
+| P13 | Sem contato dedicado, sem FAQ, sem segmentos | `/contato`, FAQ com JSON-LD e seção de segmentos |
+
+Bugs encontrados na validação em navegador e corrigidos: `overflow-x` no `body`
+transformando-o em contêiner de rolagem; `feColorMatrix` com quebras de linha
+quebrando a hidratação; gráfico com duas escalas num eixo só; textos abaixo do
+contraste AA.
+
+---
+
+## 3. Stack
+
 | Camada | Tecnologia |
-| :--- | :--- |
-| **Frontend** | Next.js 15 (App Router, TypeScript) |
-| **Estilização** | Tailwind CSS v4 (configuração via `@theme` no CSS — sem `tailwind.config.ts`) |
-| **Animações** | Framer Motion (disponível, uso pontual e consciente) |
-| **Ícones** | Lucide React |
-| **Gráficos** | Recharts (para o Showcase) |
-| **Utilitários CSS** | clsx + tailwind-merge |
-| **E-mail transacional** | Resend (`resend`) |
-| **Backend/BaaS** | Supabase (captação de leads) |
-| **Deploy** | Vercel — domínio `tallpa.com.br` |
+|---|---|
+| Framework | Next.js 16.2.0 (App Router, React Compiler) |
+| UI | React 19.2.4 · TypeScript |
+| Estilo | Tailwind CSS v4, tokens no `@theme` de `globals.css`, sem config file |
+| Animação | Framer Motion (uso pontual: só a marca) |
+| Ícones | Lucide React |
+| Gráficos | Recharts (carregado só no cliente) |
+| Lead | Supabase (persistência) + Resend (notificação) |
+| Deploy | Vercel · `tallpa.com.br` |
+
+**Nenhuma dependência foi adicionada na reconstrução.**
 
 ---
 
-## 3. Identidade Visual & UI/UX
+## 4. Identidade visual
 
-### 3.1 Tema e Estilo
-- **Tema:** Dark Mode fixo e permanente (classe `dark` aplicada globalmente na tag `<html>`).
-- **Estilo:** Minimalista, futurista e limpo.
-- **Componentes:** Cards com efeito glassmorphism, bordas arredondadas, tipografia geométrica.
+Fonte da verdade: `design-system.html` (Tallpa Design System v1.0). A paleta
+dele coincide com o gradiente da logo, foi por isso que ele substituiu a
+paleta anterior.
 
-### 3.2 Paleta de Cores (CSS variables em `globals.css`)
-| Token | Valor | Uso |
-| :--- | :--- | :--- |
-| `--color-brand-electric` | `#007BFF` | Gradiente, bordas de destaque |
-| `--color-brand-cyan` | `#00C2FF` | Eyebrows, acentos, glow |
-| `--color-dark-bg` | `#0A0C10` | Fundo principal de todas as páginas |
-| `--color-dark-card` | `#111318` | Fundo de cards glassmorphism |
-| `--color-dark-border` | `#1E2330` | Bordas sutis de cards e navbar |
-| `--color-text-light` | `#FFFFFF` | Texto principal |
-| `--color-text-dark` | `#333A44` | Texto em fundos claros |
-| `--color-text-muted` | `#8A9BC0` | Texto secundário/descritivo |
+### Tokens (em `src/app/globals.css`)
+- **Fundos:** `#050814` base · `#0A0E1A` · `#0F1328` · `#111631` card · `#161C3D` hover · `#1A2040`
+- **Rampas:** cyan 50–900, blue 50–900, gray 100–900
+- **Gradientes:** `--gradient-primary` (180°) · `--gradient-horizontal` (90°) · `--gradient-accent` (135°)
+- **Semânticos:** success `#32DC82` · warning `#FFA532` · danger `#FF4646`
+- **Bordas:** `rgba(74,248,255, .08 / .15 / .30)`
+- **Glow no lugar de sombra:** `shadow-glow-sm/md/lg`
+- **Raios:** 6 / 10 / 16 / 24
+- **Motion:** 120 / 200 / 400 / 600ms · `cubic-bezier(.22,1,.36,1)` padrão, `(.34,1.56,.64,1)` só em destaque
 
-**Gradiente elétrico:** `linear-gradient(to top, #007BFF, #00C2FF)` — definido como `--gradient-electric` e exposto via classe CSS `.bg-gradient-electric` e `.text-gradient-electric`.
+### Regra de contraste
+Nenhum texto legível abaixo de **4.5:1**. Na prática: `gray-400` (4.93:1) é o
+tom mais escuro permitido para texto. `gray-500` e `gray-600` reprovam em AA e
+não devem ser usados em texto.
 
-### 3.3 Tipografia
-- **Corpo:** `Inter` — carregada via `next/font/google`, variável CSS `--font-inter`
-- **Display/Títulos:** `Manrope` — carregada via `next/font/google`, variável CSS `--font-manrope`
-- Uso: `font-sans` para corpo, `font-display` para headlines e destaques.
+### Hero
+Os três polígonos da logo sobem da base em sequência (0 / 140 / 280ms), com
+preenchimento em gradiente e bloom de glow. Campo de partículas discreto atrás,
+escondido abaixo de 768px.
 
----
-
-## 4. Assets Estáticos — Regras Absolutas
-
-### 4.1 Caminhos dos arquivos
-| Arquivo | Caminho em `public/` | Uso |
-| :--- | :--- | :--- |
-| Favicon App Router | `src/app/icon.svg` | Automático pelo Next.js |
-| Logo dark (completa) | `public/logo/tallpa-logo-dark.svg` | Fundos escuros |
-| Logo light (completa) | `public/logo/tallpa-logo-light.svg` | Fundos claros |
-| Logo monocromática | `public/logo/tallpa-logo-monochrome.svg` | Uso editorial |
-| Ícone (sem texto) | `public/logo/tallpa-icon-transparent.svg` | Navbar, favicons, ícones inline |
-| Mockup dashboard | `public/images/tallpa-dashboard-mockup.svg` | Hero, Showcase |
-
-### 4.2 Regra de uso de imagens
-- **NUNCA** criar SVGs inline para logos. Sempre usar `<Image />` do `next/image` ou `<img>` nativo apontando para os caminhos acima.
-- Sempre incluir `width` e `height` + a classe `w-auto h-{n}` para preservar aspect-ratio.
-- Imagens prioritárias (above the fold) devem ter o atributo `priority` na tag `<Image>`.
+**Decisão registrada:** SVG + Framer Motion, sem Three.js/WebGL. São três
+polígonos, WebGL custaria ~150 KB de bundle e bateria no celular para desenhar
+com menos nitidez o que o SVG desenha. `prefers-reduced-motion: reduce` entrega
+a marca já montada, sem partículas.
 
 ---
 
-## 5. Componentes Base (Implementados)
+## 5. Arquitetura
 
-### 5.1 UI Átomos — `src/components/ui/`
-| Componente | Descrição |
-| :--- | :--- |
-| `Button.tsx` | Variantes `primary` (gradiente elétrico, glow no hover) e `ghost` (borda elétrica, fill no hover) |
-| `GlassCard.tsx` | `bg-dark-card/80 + backdrop-blur-md + border-dark-border` — base para todos os cards |
+| Rota | Conteúdo |
+|---|---|
+| `/` | Hero → problemas → soluções → projetos → método → segmentos → CTA → FAQ |
+| `/solucoes` | As 8 frentes, cada uma com âncora própria |
+| `/projetos` | Índice dos cases |
+| `/projetos/[slug]` | Case completo (SSG via `generateStaticParams`) |
+| `/sobre` | Posicionamento, princípios, método, o que está rodando |
+| `/contato` | Formulário de diagnóstico + canais diretos |
+| `/privacidade` | LGPD (preservado da v3.4) |
 
-### 5.2 Layout — `src/components/layout/`
-| Componente | Descrição |
-| :--- | :--- |
-| `Navbar.tsx` | Fixa no topo (`fixed top-0 z-50`). Transparente no topo da página, aplica `backdrop-blur-md + bg-dark-bg/90 + border-b` ao rolar. Exibe ícone + "Tallpa Solutions" à esquerda e links de navegação à direita. |
+**Redirects 308** em `next.config.ts`: `/sistemas` · `/ia-automacao` ·
+`/data-bi` → `/solucoes#âncora` · `/showcase` → `/projetos`.
 
-### 5.3 Seções — `src/components/sections/`
-| Componente | Descrição |
-| :--- | :--- |
-| `Hero.tsx` | Seção da Home. Ver especificação completa na Seção 7. |
-
----
-
-## 6. Arquitetura de Páginas (Sitemap)
-| Rota | Arquivo | Conteúdo Principal |
-| :--- | :--- | :--- |
-| `/` | `src/app/page.tsx` | Hero impactante, Proposta de Valor, Resumo dos 3 Serviços, Prova Social (KPIs), LeadForm. |
-| `/sistemas` | `src/app/sistemas/page.tsx` | Desenvolvimento sob demanda (ERPs, CRMs, Portais). |
-| `/ia-automacao` | `src/app/ia-automacao/page.tsx` | Agentes de IA e workflows que eliminam ineficiências. |
-| `/data-bi` | `src/app/data-bi/page.tsx` | Dados centralizados e insights acionáveis. |
-| `/showcase` | `src/app/showcase/page.tsx` | Galeria interativa de sistemas e dashboards (Recharts). |
-| `/sobre` | `src/app/sobre/page.tsx` | Metodologia IMPACT aplicada ao desenvolvimento tech. |
+### Conteúdo como dado
+`src/content/`, `site.ts`, `projects.ts`, `solutions.ts`, `home.ts`.
+Cadastrar um projeto ou uma solução é adicionar um objeto. Índice, rotas,
+sitemap e JSON-LD derivam daí. Ver README.
 
 ---
 
-## 7. Regra de Layout — OBRIGATÓRIA para todas as páginas
+## 6. Cases, regras de conteúdo (vinculantes)
 
-> **Esta regra deve ser seguida rigorosamente em toda nova página ou seção construída.**
+Os três projetos são de clientes reais e estão **anonimizados por decisão do
+cliente**. Ao editar `src/content/projects.ts`:
 
-### 7.1 Estrutura da section de abertura de cada página
-```tsx
-<section className="relative min-h-screen flex items-start bg-dark-bg overflow-hidden">
-  <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-10 w-full">
-    {/* conteúdo da página */}
-  </div>
-</section>
+1. **Sem nome de cliente, marca ou subdomínio.** O case é descrito pelo segmento.
+2. **Sem número que não venha dos artefatos do projeto.** Nada de ROI, "redução
+   de X%" ou contagem de usuários.
+3. **Sem dado operacional, nome de pessoa, IP interno ou credencial.**
+
+As interfaces em `src/components/screens/` são **recriações** construídas com os
+tokens visuais dos projetos, com dados ilustrativos e aviso visível na galeria.
+Nenhuma captura de tela real de cliente é exibida.
+
+---
+
+## 7. Conversão
+
+Fluxo em `DiagnosticForm`: **interesse → identificação → gargalo → envio →
+confirmação**.
+
+- Interesse por chips: diagnóstico da operação · sistema sob medida · dashboards
+  e indicadores · automação de processo · ainda não sei
+- E-mail **ou** WhatsApp, um dos dois basta
+- Validação client e server, com `aria-invalid` e `aria-describedby`
+- Anti-spam sem dependência: honeypot + tempo mínimo de preenchimento (2,5s)
+- Confirmação explícita: retorno em até 24h úteis, sem proposta e sem compromisso
+
+### Server Action (`src/app/actions.ts`)
+- Erro do Supabase **nunca** chega ao usuário, vai para o log do servidor
+- Falha do banco **não perde o lead**: o e-mail sai mesmo assim, sinalizado
+- Se a coluna `interest` não existir, regrava sem ela
+- Valores escapados antes de montar o HTML do e-mail
+
+**Pendência:** `alter table public.leads add column if not exists interest text;`
+
+---
+
+## 8. SEO
+
+- `opengraph-image.tsx` gera PNG 1200×630 no build (global e por case)
+- `generateMetadata` com canonical por rota
+- JSON-LD: Organization/LocalBusiness/ProfessionalService + WebSite (global),
+  FAQPage (home), BreadcrumbList + CreativeWork (cases), derivados de `content/`
+- `sitemap.ts` cobre 9 URLs; `robots.ts` libera tudo
+- Um `<h1>` por página; `alt` descritivo em toda imagem
+
+---
+
+## 9. LGPD (preservado da v3.4, sem alteração funcional)
+
+`CookieBanner` + `CookieModal` com toggles granulares; GA4 injetado apenas com
+`analytics: true`; `/privacidade` com direitos do titular.
+Chaves: `tallpa-cookie-consent`, `tallpa-cookie-preferences`.
+
+---
+
+## 10. Validação antes de publicar
+
+```bash
+npm run lint && npx tsc --noEmit && npm run build
 ```
 
-- `items-start` — conteúdo alinhado ao topo, não ao centro.
-- `pt-24` (96px) — compensa a Navbar fixa de 64px + 32px de respiro visual.
-- `pb-10` — padding inferior compacto.
-- `bg-dark-bg` — fundo obrigatório `#0A0C10`.
-- `max-w-7xl mx-auto` + padding lateral responsivo — manter em todas as seções.
-
-### 7.2 Seções secundárias dentro da mesma página
-```tsx
-<section className="bg-dark-bg py-10 sm:py-16">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    {/* conteúdo */}
-  </div>
-</section>
-```
-
-### 7.4 Padrão de gaps em grids
-- Todos os `grid-cols-X` devem usar `gap-6` como máximo.
-- Nunca usar `gap-8` ou superior em grids — mantém o layout compacto e consistente.
-
-### 7.3 Glow radial de fundo (padrão Hero — pode ser reusado)
-```tsx
-{/* Glow principal — topo */}
-<div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{
-  background: "radial-gradient(ellipse 75% 55% at 50% -5%, rgba(0,194,255,0.13) 0%, rgba(0,123,255,0.07) 45%, transparent 72%)"
-}} />
-{/* Glow secundário — canto inferior direito */}
-<div aria-hidden="true" className="absolute bottom-0 right-0 w-[500px] h-[500px] pointer-events-none" style={{
-  background: "radial-gradient(circle at 80% 80%, rgba(0,123,255,0.08) 0%, transparent 60%)"
-}} />
-```
-
----
-
-## 8. Navbar — Especificação Final
-- **Posição:** `fixed top-0 left-0 right-0 z-50`
-- **Estado inicial (topo):** `bg-transparent`
-- **Estado ao rolar:** `bg-dark-bg/90 backdrop-blur-md border-b border-dark-border shadow`
-- **Conteúdo esquerdo:** `<Image src="/logo/tallpa-icon-transparent.svg" />` + `<span>Tallpa Solutions</span>`
-- **Conteúdo direito:** Links de navegação (Sistemas, IA & Automação, Data & BI, Showcase, Sobre)
-- **Sem CTA na Navbar** — o CTA fica exclusivamente nas seções de conteúdo.
-
----
-
-## 9. Funcionalidade Core: Showcase Interativo
-- **Dashboard Embed:** Frame interativo com Recharts (dados mock) respeitando a paleta da marca.
-- **System Preview:** Simulação de UI de sistema com microinterações via Framer Motion.
-
----
-
-## 10. Captação de Leads — Supabase
-- Tabela `leads`: `id`, `name`, `email`, `phone?`, `company?`, `message?`, `created_at`
-- RLS: apenas INSERT público habilitado.
-- Implementação: Server Action `submitLead()` em `src/app/actions.ts`.
-- Variáveis de ambiente: `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
-- **Notificação por e-mail:** após o insert no Supabase, `submitLead` envia e-mail para `contato@tallpa.com.br` via Resend.
-  - From: `Tallpa Site <site@tallpa.com.br>`
-  - Subject: `Novo Lead: [Nome]`
-  - Variável de ambiente: `RESEND_API_KEY` (apenas server-side, sem prefixo `NEXT_PUBLIC_`).
-  - Falha no envio do e-mail é logada mas não bloqueia o sucesso do formulário.
-
----
-
-## 11. Copys e Gatilhos Mentais
-- **Autoridade:** Enfatizar trajetória sólida no mercado.
-- **Eficiência:** Redução de 36% no tempo de análise e ROI de 3.2× no primeiro ano.
-- **CTA Principal:** "Solicitar Diagnóstico Gratuito" (análise de 60 min).
-- **Copy Hero atual:** "Escale sua operação com tecnologia sob medida. Desenvolvemos sistemas, automações com IA e painéis de dados que eliminam gargalos, cortam custos invisíveis e preparam sua empresa para o próximo nível."
-
----
-
-## 12. Deploy
-- Repositório GitHub → Vercel (deploy automático no push).
-- Variáveis de ambiente configuradas no dashboard da Vercel.
-- Domínio `tallpa.com.br` apontado via DNS para a Vercel — SSL automático.
-
----
-
-## 13. Status de Implementação
-
-### Concluído ✅
-
-- [x] Configuração Base (Next.js 15, Tailwind CSS v4, Fontes Inter + Manrope, paleta de cores via `@theme`)
-- [x] Navbar (`src/components/layout/Navbar.tsx`) — fixa, scroll-aware, ícone + nome
-- [x] Hero (`src/components/sections/Hero.tsx`) — seção de abertura da Home
-- [x] Seção de Serviços (`src/components/sections/Services.tsx`) — 3 cards glassmorphism (Sistemas, IA & Automação, Data & BI)
-- [x] Prova Social / KPIs (`src/components/sections/SocialProof.tsx`) — cabeçalho "Impacto Comprovado" + 3 blocos com gradiente elétrico (37%, 3.2×, +25k)
-- [x] LeadForm (`src/components/sections/LeadCapture.tsx`) — layout 2 colunas, `useActionState`, feedback de "Enviando..." e confirmação de sucesso
-- [x] Server Action `submitLead` (`src/app/actions.ts`) — validação de campos, insert Supabase, tratamento de erro
-- [x] Supabase client (`src/lib/supabase.ts`) — singleton via `NEXT_PUBLIC_SUPABASE_URL` + `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-- [x] Notificação por e-mail via Resend (`resend`) — `submitLead` em `src/app/actions.ts` envia e-mail para `contato@tallpa.com.br` após cada lead salvo; requer `RESEND_API_KEY` no ambiente
-
-- [x] Footer (`src/components/layout/Footer.tsx`) — 3 colunas (logo + desc, links rápidos, contato), bottom bar com copyright centralizado. Inserido globalmente em `layout.tsx`.
-- [x] Cookie Banner LGPD (`src/components/layout/CookieBanner.tsx`) — Client Component com `useSyncExternalStore`; glassmorphism (`bg-dark-card/80 + backdrop-blur-md + border-dark-border`); persistência via `localStorage` (chave `tallpa-cookie-consent`); botões "Aceitar" (`primary`) e "Preferências" (`ghost`); fixo no rodapé (`fixed bottom-0 z-50`); SSR-safe. Inserido globalmente em `layout.tsx` após `<Footer />`.
-
-### Home (`/`) — Concluída ✅
-Todas as seções da Home estão implementadas: Hero → Serviços → Prova Social → LeadForm → Footer.
-
-### Showcase (`/showcase`) — Concluída ✅
-
-- [x] `src/app/showcase/page.tsx` — Server Component; abertura §7.1 com glow §7.3, título "Tecnologia em Movimento", CTA final com âncora `/#contato`
-- [x] `src/components/sections/ShowcaseDashboard.tsx` — ERP Financeiro interativo: toggles 7d/30d/12m, mini stats (Receita, ROI, Tasks), `ComposedChart` (barras receita/custo + linha economia IA), tooltip dark mode, sidebar decorativa, aviso "Dados fictícios"
-- [x] `src/components/sections/ShowcaseWidgets.tsx` — 3 widgets com Framer Motion (`whileHover`): Agentes de IA (pulse), KPIs de Impacto (barras de progresso), Insights Estratégicos (alertas, sugestões, resultados)
-
-### Páginas de Serviço — Concluídas ✅
-
-- [x] `src/app/sistemas/page.tsx` — H1: "O software que a sua empresa merecia desde o início." · 4 GlassCards de benefícios (processo exclusivo, ERPs/CRMs, visibilidade, arquitetura escalável) · diferenciais rápidos (sem mensalidade, código é seu, integrações sem limite) · 2 CTAs → `/#contato`
-- [x] `src/app/ia-automacao/page.tsx` — H1: "IA & Automação Inteligente." · Subtítulo: "Elimine os gargalos manuais que travam o seu crescimento. Substitua processos repetitivos por fluxos inteligentes que escalam com a sua empresa." · 4 GlassCards (tarefas eliminadas, escala sem headcount, agentes contextuais, workflows integrados) · stats rápidos (80%, 24/7, 3.2×) · 2 CTAs → `/#contato`
-- [x] `src/app/data-bi/page.tsx` — H1: "Seus dados existem. Falta clareza para usá-los." · 4 GlassCards (fonte única de verdade, clareza para quem decide, métricas de causa, análise histórica + previsão) · stats rápidos (37%, 1 fonte, +25k) · 2 CTAs → `/#contato`
-
-**Padrão aplicado em todas:** abertura §7.1 (`min-h-screen`, `items-start`, `pt-20`), glow radial §7.3 (topo + canto inferior direito), eyebrow `text-brand-cyan`, headline `font-display` com `text-gradient-electric`, `metadata` com title e description para SEO.
-
-### Sobre (`/sobre`) — Concluída ✅
-
-- [x] `src/app/sobre/page.tsx` — H1: "Engenharia de Software focada em Resultados Reais." · Subtítulo: "Não somos apenas codificadores. Somos parceiros estratégicos que usam tecnologia para resolver problemas complexos de negócios." · Grid 3 colunas com 6 GlassCards da Metodologia IMPACT (Imersão, Mapeamento, Prototipagem, Arquitetura, Código, Tração) · cada card exibe letra IMPACT em gradiente elétrico + ícone Lucide `text-brand-cyan` + label + descrição · CTA final: "Fale com um Engenheiro" → `/#contato`
-
-### SEO — Concluído ✅
-
-#### Metadata Global (`src/app/layout.tsx`)
-- `metadataBase: new URL("https://tallpa.com.br")` — resolve todos os caminhos relativos de imagens OG
-- `title.template: "%s | Tallpa Solutions"` — sufixo aplicado automaticamente a todas as páginas filhas
-- `title.default: "Tallpa Solutions | Software House Premium"` — fallback para a Home
-- `openGraph` completo: type `website`, locale `pt_BR`, url, siteName, imagem `/images/tallpa-dashboard-mockup.svg` (1200×630)
-- `twitter.card: "summary_large_image"` com mesma imagem
-- `robots: { index: true, follow: true }`
-
-#### Títulos por página (sem sufixo — template do layout adiciona `| Tallpa Solutions`)
-| Rota | `title` no código | Resultado renderizado |
-| :--- | :--- | :--- |
-| `/` | *(default)* | `Tallpa Solutions \| Software House Premium` |
-| `/sistemas` | `"Sistemas Sob Demanda"` | `Sistemas Sob Demanda \| Tallpa Solutions` |
-| `/ia-automacao` | `"IA & Automação"` | `IA & Automação \| Tallpa Solutions` |
-| `/data-bi` | `"Data & BI"` | `Data & BI \| Tallpa Solutions` |
-| `/showcase` | `"Showcase"` | `Showcase \| Tallpa Solutions` |
-| `/sobre` | `"Sobre a Tallpa"` | `Sobre a Tallpa \| Tallpa Solutions` |
-
-#### Indexação
-- [x] `src/app/sitemap.ts` — 6 rotas com `changeFrequency` e `priority` calibrados. Gerado em `/sitemap.xml`.
-  - Home: `priority: 1`, `changeFrequency: "monthly"`
-  - Serviços (/sistemas, /ia-automacao, /data-bi): `priority: 0.9`
-  - Showcase: `priority: 0.7`
-  - Sobre: `priority: 0.6`, `changeFrequency: "yearly"`
-- [x] `src/app/robots.ts` — `Allow: /` para todos os crawlers, aponta para `https://tallpa.com.br/sitemap.xml`. Gerado em `/robots.txt`.
+Checklist manual: hero em 1440/768/375px · `prefers-reduced-motion` · navegação
+por teclado com foco visível · formulário (erro, sucesso, e-mail recebido) ·
+console do navegador limpo · redirects antigos respondendo · contraste AA ·
+**busca por nome de cliente em `src/` e `public/` retornando zero**.

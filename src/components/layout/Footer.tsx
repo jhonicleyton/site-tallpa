@@ -1,112 +1,107 @@
-import Image from "next/image";
 import Link from "next/link";
-import { Instagram, Linkedin, Mail, Phone } from "lucide-react";
+import { Instagram, Linkedin, Mail, MessageCircle } from "lucide-react";
+import TallpaMark from "@/components/ui/TallpaMark";
+import { Container } from "@/components/ui/Section";
+import { contact, cta, site, social, whatsappUrl } from "@/content/site";
 
-const navLinks = [
-  { label: "Sistemas", href: "/sistemas" },
-  { label: "IA & Automação", href: "/ia-automacao" },
-  { label: "Data & BI", href: "/data-bi" },
-  { label: "Showcase", href: "/showcase" },
+const solutions = [
+  { label: "Sistemas sob medida", href: "/solucoes#sistemas" },
+  { label: "Dashboards e indicadores", href: "/solucoes#indicadores" },
+  { label: "Automação de processos", href: "/solucoes#automacao" },
+  { label: "Diagnóstico operacional", href: "/solucoes#diagnostico" },
+];
+
+const company = [
+  { label: "Projetos", href: "/projetos" },
+  { label: "Sobre a Tallpa", href: "/sobre" },
+  { label: "Contato", href: "/contato" },
+  { label: "Política de privacidade", href: "/privacidade" },
+];
+
+const channels = [
+  { label: contact.email, href: `mailto:${contact.email}`, Icon: Mail },
+  { label: contact.phoneLabel, href: whatsappUrl, Icon: MessageCircle, external: true },
+  { label: "@tallpasolutions", href: social.instagram, Icon: Instagram, external: true },
+  { label: "LinkedIn", href: social.linkedin, Icon: Linkedin, external: true },
 ];
 
 export default function Footer() {
   return (
-    <footer className="bg-dark-bg border-t border-dark-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          {/* Coluna 1 — Logo + descrição */}
-          <div className="flex flex-col gap-4">
-            <Image
-              src="/logo/tallpa-logo-dark.svg"
-              alt="Tallpa Solutions"
-              width={280}
-              height={64}
-              className="w-auto h-16"
-            />
-            <p className="text-text-muted text-sm leading-relaxed max-w-[260px]">
-              Software House premium especializada em sistemas sob demanda,
-              automação com IA e inteligência de dados.
-            </p>
+    <footer className="mt-auto border-t border-line bg-gradient-to-b from-transparent to-bg-1/60">
+      <Container className="py-14 sm:py-16">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="flex flex-col gap-4 lg:pr-6">
+            <Link href="/" className="flex items-center gap-2.5" aria-label={`${site.name}, início`}>
+              <TallpaMark className="h-9 w-9" title={site.name} />
+              <span className="font-display text-base font-semibold text-white">
+                Tallpa
+                <span className="ml-1.5 align-[1px] font-sans text-[8px] font-medium uppercase tracking-[0.25em] text-cyan-500">
+                  Solutions
+                </span>
+              </span>
+            </Link>
+            <p className="max-w-[280px] text-sm leading-relaxed text-gray-400">{site.description}</p>
           </div>
 
-          {/* Coluna 2 — Links rápidos */}
-          <div className="flex flex-col gap-4">
-            <h3 className="font-display text-sm font-semibold text-text-light uppercase tracking-widest">
+          <nav aria-label="Soluções" className="flex flex-col gap-4">
+            <h2 className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-500">
               Soluções
-            </h3>
-            <ul className="flex flex-col gap-2">
-              {navLinks.map(({ label, href }) => (
+            </h2>
+            <ul className="flex flex-col gap-2.5">
+              {solutions.map(({ label, href }) => (
                 <li key={href}>
-                  <Link
-                    href={href}
-                    className="text-text-muted text-sm hover:text-text-light transition-colors"
-                  >
+                  <Link href={href} className="text-sm text-gray-400 transition-colors hover:text-cyan-300">
                     {label}
                   </Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
-          {/* Coluna 3 — Contato */}
-          <div className="flex flex-col gap-4">
-            <h3 className="font-display text-sm font-semibold text-text-light uppercase tracking-widest">
-              Contato
-            </h3>
-            <ul className="flex flex-col gap-3">
-              <li>
-                <a
-                  href="mailto:contato@tallpa.com.br"
-                  className="flex items-center gap-2 text-text-muted text-sm hover:text-text-light transition-colors"
-                >
-                  <Mail className="w-4 h-4 text-brand-cyan flex-shrink-0" strokeWidth={1.5} />
-                  contato@tallpa.com.br
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://linkedin.com/company/tallpa"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-text-muted text-sm hover:text-text-light transition-colors"
-                >
-                  <Linkedin className="w-4 h-4 text-brand-cyan flex-shrink-0" strokeWidth={1.5} />
-                  linkedin.com/company/tallpa
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://wa.me/5547997769646?text=Olá,%20vi%20o%20site%20da%20Tallpa%20e%20gostaria%20de%20saber%20mais%20sobre"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-text-muted text-sm hover:text-text-light transition-colors"
-                >
-                  <Phone className="w-4 h-4 text-brand-cyan flex-shrink-0" strokeWidth={1.5} />
-                  +55 47 9 9776-9646
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.instagram.com/tallpasolutions"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-text-muted text-sm hover:text-text-light transition-colors"
-                >
-                  <Instagram className="w-4 h-4 text-brand-cyan flex-shrink-0" strokeWidth={1.5} />
-                  @tallpasolutions
-                </a>
-              </li>
+          <nav aria-label="Institucional" className="flex flex-col gap-4">
+            <h2 className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-500">
+              Tallpa
+            </h2>
+            <ul className="flex flex-col gap-2.5">
+              {company.map(({ label, href }) => (
+                <li key={href}>
+                  <Link href={href} className="text-sm text-gray-400 transition-colors hover:text-cyan-300">
+                    {label}
+                  </Link>
+                </li>
+              ))}
             </ul>
+          </nav>
+
+          <div className="flex flex-col gap-4">
+            <h2 className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-500">
+              Contato
+            </h2>
+            <ul className="flex flex-col gap-2.5">
+              {channels.map(({ label, href, Icon, external }) => (
+                <li key={href}>
+                  <a
+                    href={href}
+                    {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                    className="flex items-center gap-2.5 text-sm text-gray-400 transition-colors hover:text-cyan-300"
+                  >
+                    <Icon className="h-4 w-4 shrink-0 text-cyan-500" strokeWidth={1.5} aria-hidden="true" />
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-1 text-xs leading-relaxed text-gray-400">{cta.promise}</p>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-12 pt-6 border-t border-dark-border flex items-center justify-center">
-          <p className="text-text-muted text-xs">
-            Tallpa Solutions © 2026. Todos os direitos reservados.
+        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-line pt-6 sm:flex-row">
+          <p className="text-xs text-gray-400">
+            © {new Date().getFullYear()} {site.name}. Todos os direitos reservados.
           </p>
+          <p className="font-mono text-[11px] text-gray-400">Santa Catarina · Brasil</p>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 }

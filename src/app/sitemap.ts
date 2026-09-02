@@ -1,50 +1,28 @@
 import type { MetadataRoute } from "next";
+import { projects } from "@/content/projects";
+import { site } from "@/content/site";
 
-const BASE_URL = "https://tallpa.com.br";
+/** Data da reconstrução do site. Atualizar em mudanças estruturais. */
+const LAST_MODIFIED = new Date("2026-09-02");
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: BASE_URL,
-      lastModified: new Date("2025-01-15"),
-      changeFrequency: "monthly",
-      priority: 1,
-    },
-    {
-      url: `${BASE_URL}/sistemas`,
-      lastModified: new Date("2025-01-15"),
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/ia-automacao`,
-      lastModified: new Date("2025-01-15"),
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/data-bi`,
-      lastModified: new Date("2025-01-15"),
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/showcase`,
-      lastModified: new Date("2025-01-15"),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/sobre`,
-      lastModified: new Date("2025-01-15"),
-      changeFrequency: "yearly",
-      priority: 0.6,
-    },
-    {
-      url: `${BASE_URL}/privacidade`,
-      lastModified: new Date("2025-01-15"),
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
+  const staticRoutes: MetadataRoute.Sitemap = [
+    { url: site.url, changeFrequency: "monthly", priority: 1 },
+    { url: `${site.url}/solucoes`, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${site.url}/projetos`, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${site.url}/contato`, changeFrequency: "yearly", priority: 0.8 },
+    { url: `${site.url}/sobre`, changeFrequency: "yearly", priority: 0.6 },
+    { url: `${site.url}/privacidade`, changeFrequency: "yearly", priority: 0.3 },
   ];
+
+  const caseRoutes: MetadataRoute.Sitemap = projects.map((p) => ({
+    url: `${site.url}/projetos/${p.slug}`,
+    changeFrequency: "monthly",
+    priority: 0.8,
+  }));
+
+  return [...staticRoutes, ...caseRoutes].map((route) => ({
+    ...route,
+    lastModified: LAST_MODIFIED,
+  }));
 }

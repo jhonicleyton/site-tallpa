@@ -31,7 +31,7 @@ function Toggle({ value, disabled = false, onChange }: ToggleProps) {
       onClick={() => onChange(!value)}
       className={clsx(
         "relative inline-flex h-6 w-11 shrink-0 rounded-full border-2 transition-colors duration-200",
-        value ? "bg-brand-cyan border-brand-cyan" : "bg-dark-border border-dark-border",
+        value ? "bg-cyan-400 border-cyan-400" : "bg-bg-surface border-line",
         disabled ? "opacity-60 cursor-not-allowed" : "cursor-pointer"
       )}
     >
@@ -57,33 +57,33 @@ export default function CookieModal({ isOpen, onClose, onSave }: CookieModalProp
       onClick={onClose}
     >
       <div
-        className="bg-dark-card/95 border border-dark-border rounded-2xl p-6 w-full max-w-lg shadow-2xl relative overflow-y-auto max-h-[90vh]"
+        className="bg-bg-card/95 border border-line rounded-2xl p-6 w-full max-w-lg shadow-2xl relative overflow-y-auto max-h-[90vh]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Botão fechar */}
         <button
           onClick={onClose}
           aria-label="Fechar modal"
-          className="absolute top-4 right-4 text-text-muted hover:text-text-light transition-colors"
+          className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
         >
           <X size={20} />
         </button>
 
         {/* Cabeçalho */}
-        <h2 className="text-xl font-display font-bold text-text-light pr-8">
+        <h2 className="text-xl font-display font-bold text-white pr-8">
           Preferências de Privacidade
         </h2>
-        <p className="text-text-muted text-sm leading-relaxed mt-2">
+        <p className="text-gray-400 text-sm leading-relaxed mt-2">
           Escolha quais categorias de cookies você permite. Suas preferências serão salvas conforme a LGPD.
         </p>
 
         {/* Categorias */}
         <ul className="mt-4">
           {/* Estritamente Necessários */}
-          <li className="flex items-start justify-between gap-4 py-4 border-b border-dark-border">
+          <li className="flex items-start justify-between gap-4 py-4 border-b border-line">
             <div>
-              <p className="text-text-light text-sm font-semibold">Estritamente Necessários</p>
-              <p className="text-text-muted text-xs mt-0.5 leading-relaxed">
+              <p className="text-white text-sm font-semibold">Estritamente Necessários</p>
+              <p className="text-gray-400 text-xs mt-0.5 leading-relaxed">
                 Essenciais para o funcionamento do site.
               </p>
             </div>
@@ -91,10 +91,10 @@ export default function CookieModal({ isOpen, onClose, onSave }: CookieModalProp
           </li>
 
           {/* Analíticos */}
-          <li className="flex items-start justify-between gap-4 py-4 border-b border-dark-border">
+          <li className="flex items-start justify-between gap-4 py-4 border-b border-line">
             <div>
-              <p className="text-text-light text-sm font-semibold">Analíticos</p>
-              <p className="text-text-muted text-xs mt-0.5 leading-relaxed">
+              <p className="text-white text-sm font-semibold">Analíticos</p>
+              <p className="text-gray-400 text-xs mt-0.5 leading-relaxed">
                 Permitem entender como os visitantes interagem com o site (ex: Google Analytics).
               </p>
             </div>
@@ -104,8 +104,8 @@ export default function CookieModal({ isOpen, onClose, onSave }: CookieModalProp
           {/* Marketing */}
           <li className="flex items-start justify-between gap-4 py-4">
             <div>
-              <p className="text-text-light text-sm font-semibold">Marketing</p>
-              <p className="text-text-muted text-xs mt-0.5 leading-relaxed">
+              <p className="text-white text-sm font-semibold">Marketing</p>
+              <p className="text-gray-400 text-xs mt-0.5 leading-relaxed">
                 Usados para rastrear visitantes em sites para exibir anúncios relevantes.
               </p>
             </div>
@@ -124,7 +124,7 @@ export default function CookieModal({ isOpen, onClose, onSave }: CookieModalProp
           </Button>
           <Button
             variant="ghost"
-            className="flex-1 border-brand-cyan"
+            className="flex-1 border-cyan-400"
             onClick={() => onSave({ analytics: true, marketing: true })}
           >
             Aceitar Todos
